@@ -1,0 +1,68 @@
+﻿using LoyaltyAPI.Security;
+
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddControllers();
+
+// Thêm Swagger/OpenAPI
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+    {
+        Title = "Loyalty API",
+        Version = "v1",
+        Description = "API quản lý chương trình khách hàng thân thiết"
+    });
+
+    // Cấu hình API Key Security Definition
+    c.AddSecurityDefinition("ApiKey", new Microsoft.OpenApi.Models.OpenApiSecurityScheme
+    {
+        Description = "API Key được sử dụng để xác thực. Nhập API Key của bạn vào đây.",
+        Name = "X-API-KEY",
+        In = Microsoft.OpenApi.Models.ParameterLocation.Header,
+        Type = Microsoft.OpenApi.Models.SecuritySchemeType.ApiKey,
+        Scheme = "ApiKeyScheme"
+    });
+
+    // Áp dụng Security Requirement cho tất cả endpoints
+    c.AddSecurityRequirement(new Microsoft.OpenApi.Models.OpenApiSecurityRequirement
+    {
+        {
+            new Microsoft.OpenApi.Models.OpenApiSecurityScheme
+            {
+                Reference = new Microsoft.OpenApi.Models.OpenApiReference
+                {
+                    Type = Microsoft.OpenApi.Models.ReferenceType.SecurityScheme,
+                    Id = "ApiKey"
+                },
+                In = Microsoft.OpenApi.Models.ParameterLocation.Header
+            },
+            new List<string>()
+        }
+    });
+});
+
+var app = builder.Build();
+
+// Cấu hình Swagger UI
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Loyalty API v1");
+        c.RoutePrefix = "swagger"; // Swagger UI sẽ hiển thị tại /swagger
+    });
+}
+
+// Kích hoạt Middleware bảo mật cho toàn bộ API (trừ Swagger endpoints)
+app.UseMiddleware<ApiKeyMiddleware>();
+
+app.UseHttpsRedirection();
+app.UseAuthorization();
+app.MapControllers();
+
+app.MapGet("/", () => "API is running. Test via .http file or Postman.");
+
+app.Run();

@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36717.8
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoyaltyAPI", "LoyaltyAPI\LoyaltyAPI.csproj", "{0613F642-7D6D-4041-A7B5-CCF5417F9EE5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoyaltyWebApp", "LoyaltyWebApp\LoyaltyWebApp.csproj", "{2A1F1174-7407-FA00-E876-B20A7A7B2EEE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0613F642-7D6D-4041-A7B5-CCF5417F9EE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0613F642-7D6D-4041-A7B5-CCF5417F9EE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0613F642-7D6D-4041-A7B5-CCF5417F9EE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0613F642-7D6D-4041-A7B5-CCF5417F9EE5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A1F1174-7407-FA00-E876-B20A7A7B2EEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A1F1174-7407-FA00-E876-B20A7A7B2EEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A1F1174-7407-FA00-E876-B20A7A7B2EEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A1F1174-7407-FA00-E876-B20A7A7B2EEE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FC15A151-5D2C-401F-97EB-D19E698CEA8E}
+	EndGlobalSection
+EndGlobal

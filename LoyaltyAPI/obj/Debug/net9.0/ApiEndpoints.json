@@ -43,7 +43,97 @@
     "Parameters": [
       {
         "Name": "request",
-        "Type": "LoyaltyAPI.Controllers.LoginRequest",
+        "Type": "LoyaltyAPI.Model.LoginRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LoyaltyAPI.Controllers.LoyaltyController",
+    "Method": "GetAvailableRewards",
+    "RelativePath": "api/Loyalty/rewards",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "page",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LoyaltyAPI.Controllers.LoyaltyController",
+    "Method": "CreateReward",
+    "RelativePath": "api/Loyalty/rewards",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "LoyaltyAPI.Model.CreateRewardRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LoyaltyAPI.Controllers.LoyaltyController",
+    "Method": "GetRewardById",
+    "RelativePath": "api/Loyalty/rewards/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LoyaltyAPI.Controllers.LoyaltyController",
+    "Method": "UpdateReward",
+    "RelativePath": "api/Loyalty/rewards/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "request",
+        "Type": "LoyaltyAPI.Model.UpdateRewardRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LoyaltyAPI.Controllers.LoyaltyController",
+    "Method": "DeleteReward",
+    "RelativePath": "api/Loyalty/rewards/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],

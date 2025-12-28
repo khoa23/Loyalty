@@ -36,3 +36,4 @@ D:\Code\LoyaltyAPI\LoyaltyAPI\obj\Debug\net9.0\ref\LoyaltyAPI.dll
 D:\Code\LoyaltyAPI\LoyaltyAPI\bin\Debug\net9.0\Swashbuckle.AspNetCore.Swagger.dll
 D:\Code\LoyaltyAPI\LoyaltyAPI\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 D:\Code\LoyaltyAPI\LoyaltyAPI\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+D:\Code\LoyaltyAPI\LoyaltyAPI\obj\Debug\net9.0\LoyaltyAPI.sourcelink.json

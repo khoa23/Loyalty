@@ -19,38 +19,6 @@
   },
   {
     "ContainingType": "LoyaltyAPI.Controllers.LoyaltyController",
-    "Method": "GetCustomer",
-    "RelativePath": "api/Loyalty/customer/{userId}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "userId",
-        "Type": "System.Int64",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "LoyaltyAPI.Controllers.LoyaltyController",
-    "Method": "Login",
-    "RelativePath": "api/Loyalty/login",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "request",
-        "Type": "LoyaltyAPI.Model.LoginRequest",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "LoyaltyAPI.Controllers.LoyaltyController",
     "Method": "GetAvailableRewards",
     "RelativePath": "api/Loyalty/rewards",
     "HttpMethod": "GET",
@@ -96,7 +64,7 @@
     "Parameters": [
       {
         "Name": "id",
-        "Type": "System.Int32",
+        "Type": "System.Int64",
         "IsRequired": true
       }
     ],
@@ -112,7 +80,7 @@
     "Parameters": [
       {
         "Name": "id",
-        "Type": "System.Int32",
+        "Type": "System.Int64",
         "IsRequired": true
       },
       {
@@ -133,7 +101,81 @@
     "Parameters": [
       {
         "Name": "id",
+        "Type": "System.Int64",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LoyaltyAPI.Controllers.RewardController",
+    "Method": "GetRedemptionHistory",
+    "RelativePath": "api/Reward/history/{customerId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "customerId",
+        "Type": "System.Int64",
+        "IsRequired": true
+      },
+      {
+        "Name": "page",
         "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LoyaltyAPI.Controllers.RewardController",
+    "Method": "RedeemReward",
+    "RelativePath": "api/Reward/redeem",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "LoyaltyAPI.Model.RedeemRewardRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LoyaltyAPI.Controllers.UserController",
+    "Method": "GetCustomer",
+    "RelativePath": "api/User/customer/{userId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int64",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LoyaltyAPI.Controllers.UserController",
+    "Method": "Login",
+    "RelativePath": "api/User/login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "LoyaltyAPI.Model.LoginRequest",
         "IsRequired": true
       }
     ],

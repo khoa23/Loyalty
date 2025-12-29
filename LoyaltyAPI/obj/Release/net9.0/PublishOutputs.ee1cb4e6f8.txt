@@ -1,0 +1,14 @@
+D:\Code\LoyaltyAPI\LoyaltyAPI\obj\Release\net9.0\PubTmp\Out\LoyaltyAPI.exe
+D:\Code\LoyaltyAPI\LoyaltyAPI\obj\Release\net9.0\PubTmp\Out\appsettings.Development.json
+D:\Code\LoyaltyAPI\LoyaltyAPI\obj\Release\net9.0\PubTmp\Out\appsettings.json
+D:\Code\LoyaltyAPI\LoyaltyAPI\obj\Release\net9.0\PubTmp\Out\LoyaltyAPI.dll
+D:\Code\LoyaltyAPI\LoyaltyAPI\obj\Release\net9.0\PubTmp\Out\LoyaltyAPI.deps.json
+D:\Code\LoyaltyAPI\LoyaltyAPI\obj\Release\net9.0\PubTmp\Out\LoyaltyAPI.runtimeconfig.json
+D:\Code\LoyaltyAPI\LoyaltyAPI\obj\Release\net9.0\PubTmp\Out\LoyaltyAPI.pdb
+D:\Code\LoyaltyAPI\LoyaltyAPI\obj\Release\net9.0\PubTmp\Out\Dapper.dll
+D:\Code\LoyaltyAPI\LoyaltyAPI\obj\Release\net9.0\PubTmp\Out\Microsoft.AspNetCore.OpenApi.dll
+D:\Code\LoyaltyAPI\LoyaltyAPI\obj\Release\net9.0\PubTmp\Out\Microsoft.OpenApi.dll
+D:\Code\LoyaltyAPI\LoyaltyAPI\obj\Release\net9.0\PubTmp\Out\Npgsql.dll
+D:\Code\LoyaltyAPI\LoyaltyAPI\obj\Release\net9.0\PubTmp\Out\Swashbuckle.AspNetCore.Swagger.dll
+D:\Code\LoyaltyAPI\LoyaltyAPI\obj\Release\net9.0\PubTmp\Out\Swashbuckle.AspNetCore.SwaggerGen.dll
+D:\Code\LoyaltyAPI\LoyaltyAPI\obj\Release\net9.0\PubTmp\Out\Swashbuckle.AspNetCore.SwaggerUI.dll

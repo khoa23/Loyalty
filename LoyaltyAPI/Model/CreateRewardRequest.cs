@@ -7,6 +7,7 @@ namespace LoyaltyAPI.Model
         public long PointsCost { get; set; }
         public int StockQuantity { get; set; }
         public bool IsActive { get; set; } = true;
+        public long? LastUpdatedBy { get; set; }
     }
 }
 

@@ -1,0 +1,86 @@
+@page
+@model LoyaltyWebApp.Pages.Admin.IndexModel
+@{
+    ViewData["Title"] = "Quản lý quà";
+}
+
+<div class="container-fluid mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Quản lý quà</h2>
+        <a href="/Admin/Create" class="btn btn-primary">
+            <i class="bi bi-plus-circle"></i> Thêm quà mới
+        </a>
+    </div>
+
+    @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+    {
+        <div class="alert alert-danger" role="alert">
+            @Model.ErrorMessage
+        </div>
+    }
+
+    @if (Model.Rewards != null && Model.Rewards.Any())
+    {
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Tên quà</th>
+                        <th>Mô tả</th>
+                        <th>Điểm đổi</th>
+                        <th>Số lượng</th>
+                        <th>Ảnh</th>
+                        <th>Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var reward in Model.Rewards)
+                    {
+                        <tr>
+                            <td>@reward.Reward_Id</td>
+                            <td>@reward.Reward_Name</td>
+                            <td>@(reward.Description?.Length > 50 ? reward.Description.Substring(0, 50) + "..." : reward.Description)</td>
+                            <td>@reward.Points_Cost</td>
+                            <td>@reward.Stock_Quantity</td>
+                            <td>
+                                @if (!string.IsNullOrEmpty(reward.Image_Url))
+                                {
+                                    <img src="@Model.GetImageUrl(reward.Image_Url)" alt="@reward.Reward_Name" style="max-width: 50px; max-height: 50px;" />
+                                }
+                                else
+                                {
+                                    <span class="text-muted">Không có ảnh</span>
+                                }
+                            </td>
+                            <td>
+                                <a href="/Admin/Edit?id=@reward.Reward_Id" class="btn btn-sm btn-warning">Sửa</a>
+                                <button type="button" class="btn btn-sm btn-danger" onclick="deleteReward('@reward.Reward_Id', '@reward.Reward_Name')">Xóa</button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info">Chưa có quà nào. <a href="/Admin/Create">Thêm quà mới</a></div>
+    }
+</div>
+
+<form id="deleteForm" method="post" style="display: none;">
+    <input type="hidden" name="rewardId" id="deleteRewardId" />
+</form>
+
+@section Scripts {
+    <script>
+        function deleteReward(rewardId, rewardName) {
+            if (confirm(`Bạn có chắc chắn muốn xóa quà "${rewardName}"?`)) {
+                document.getElementById('deleteRewardId').value = rewardId;
+                document.getElementById('deleteForm').submit();
+            }
+        }
+    </script>
+}
+

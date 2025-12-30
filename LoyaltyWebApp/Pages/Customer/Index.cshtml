@@ -1,0 +1,127 @@
+@page
+@model LoyaltyWebApp.Pages.Customer.IndexModel
+@{
+    ViewData["Title"] = "Danh sách quà";
+}
+
+<div class="container-fluid mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Danh sách quà</h2>
+        <div>
+            <span class="badge bg-primary fs-6">Điểm hiện có: <strong>@Model.CurrentPoints</strong></span>
+        </div>
+    </div>
+
+    @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+    {
+        <div class="alert alert-danger" role="alert">
+            @Model.ErrorMessage
+        </div>
+    }
+
+    @if (!string.IsNullOrEmpty(Model.SuccessMessage))
+    {
+        <div class="alert alert-success" role="alert">
+            @Model.SuccessMessage
+        </div>
+    }
+
+    @if (Model.Rewards != null && Model.Rewards.Any())
+    {
+        <div class="row">
+            @foreach (var reward in Model.Rewards)
+            {
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        @if (!string.IsNullOrEmpty(reward.Image_Url))
+                        {
+                            <img src="@Model.GetImageUrl(reward.Image_Url)" class="card-img-top" alt="@reward.Reward_Name" style="height: 200px; object-fit: cover;">
+                        }
+                        else
+                        {
+                            <div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height: 200px;">
+                                <span class="text-muted">Không có ảnh</span>
+                            </div>
+                        }
+                        <div class="card-body">
+                            <h5 class="card-title">@reward.Reward_Name</h5>
+                            <p class="card-text">@reward.Description</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="badge bg-warning text-dark">@reward.Points_Cost điểm</span>
+                                <span class="text-muted">Còn: @reward.Stock_Quantity</span>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button type="button" class="btn btn-primary w-100" 
+                                    onclick="showRedeemModal('@reward.Reward_Id', '@reward.Reward_Name', @reward.Points_Cost, @reward.Stock_Quantity, @Model.CurrentPoints)">
+                                Đổi quà
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info">Hiện tại không có quà nào.</div>
+    }
+</div>
+
+<!-- Modal đổi quà -->
+<div class="modal fade" id="redeemModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Đổi quà</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form method="post" id="redeemForm">
+                <div class="modal-body">
+                    <input type="hidden" name="rewardId" id="modalRewardId" />
+                    <p><strong>Tên quà:</strong> <span id="modalRewardName"></span></p>
+                    <p><strong>Điểm cần:</strong> <span id="modalPointsCost"></span> điểm</p>
+                    <p><strong>Điểm hiện có:</strong> <span id="modalCurrentPoints"></span> điểm</p>
+                    <div class="mb-3">
+                        <label for="quantity" class="form-label">Số lượng</label>
+                        <input type="number" class="form-control" id="quantity" name="quantity" value="1" min="1" required>
+                        <small class="form-text text-muted">Tổng điểm cần: <span id="totalPoints">0</span></small>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                    <button type="submit" class="btn btn-primary">Xác nhận đổi</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function showRedeemModal(rewardId, rewardName, pointsCost, stockQuantity, currentPoints) {
+            document.getElementById('modalRewardId').value = rewardId;
+            document.getElementById('modalRewardName').textContent = rewardName;
+            document.getElementById('modalPointsCost').textContent = pointsCost;
+            document.getElementById('modalCurrentPoints').textContent = currentPoints;
+            
+            const quantityInput = document.getElementById('quantity');
+            quantityInput.max = stockQuantity;
+            quantityInput.value = 1;
+            updateTotalPoints();
+            
+            const modal = new bootstrap.Modal(document.getElementById('redeemModal'));
+            modal.show();
+        }
+
+        function updateTotalPoints() {
+            const quantity = parseInt(document.getElementById('quantity').value) || 1;
+            const pointsCost = parseInt(document.getElementById('modalPointsCost').textContent) || 0;
+            const total = quantity * pointsCost;
+            document.getElementById('totalPoints').textContent = total;
+        }
+
+        document.getElementById('quantity').addEventListener('input', updateTotalPoints);
+    </script>
+}
+

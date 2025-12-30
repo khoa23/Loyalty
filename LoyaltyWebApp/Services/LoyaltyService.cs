@@ -1,0 +1,78 @@
+using LoyaltyWebApp.Models;
+using System.Text.Json;
+
+namespace LoyaltyWebApp.Services
+{
+    public class LoyaltyService : ILoyaltyService
+    {
+        private readonly IHttpClientFactory _httpClientFactory;
+
+        public LoyaltyService(IHttpClientFactory httpClientFactory)
+        {
+            _httpClientFactory = httpClientFactory;
+        }
+
+        public async Task<string?> RedeemRewardAsync(long customerId, long rewardId, int quantity)
+        {
+            try
+            {
+                var httpClient = _httpClientFactory.CreateClient("LoyaltyAPI");
+                var redeemRequest = new
+                {
+                    customerId = customerId,
+                    rewardId = rewardId,
+                    quantity = quantity
+                };
+
+                var response = await httpClient.PostAsJsonAsync("api/Reward/redeem", redeemRequest);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    return null; // Success
+                }
+                else
+                {
+                    var errorContent = await response.Content.ReadAsStringAsync();
+                    var errorResult = JsonSerializer.Deserialize<JsonElement>(errorContent);
+                    return errorResult.TryGetProperty("Message", out var msg) 
+                        ? msg.GetString() 
+                        : "Đổi quà thất bại";
+                }
+            }
+            catch (Exception ex)
+            {
+                return $"Lỗi: {ex.Message}";
+            }
+        }
+
+        public async Task<List<HistoryItem>?> GetRedemptionHistoryAsync(long customerId, int page = 1, int pageSize = 100)
+        {
+            try
+            {
+                var httpClient = _httpClientFactory.CreateClient("LoyaltyAPI");
+                var response = await httpClient.GetAsync($"api/Reward/history/{customerId}?page={page}&pageSize={pageSize}");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var content = await response.Content.ReadAsStringAsync();
+                    var result = JsonSerializer.Deserialize<JsonElement>(content);
+
+                    if (result.TryGetProperty("Data", out var data))
+                    {
+                        return JsonSerializer.Deserialize<List<HistoryItem>>(data.GetRawText(), new JsonSerializerOptions
+                        {
+                            PropertyNameCaseInsensitive = true
+                        });
+                    }
+                }
+            }
+            catch
+            {
+                // Return null on error
+            }
+
+            return null;
+        }
+    }
+}
+

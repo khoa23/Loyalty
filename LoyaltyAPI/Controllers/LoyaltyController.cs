@@ -311,7 +311,7 @@ namespace LoyaltyAPI.Controllers
             using IDbConnection db = new NpgsqlConnection(_connectionString);
 
             var reward = await db.QueryFirstOrDefaultAsync<RewardResponse>(
-                @"SELECT reward_id::text as reward_id, reward_name, description, points_cost, stock_quantity, image_url, updated_at
+                @"SELECT reward_id::text as reward_id, reward_name, description, points_cost, stock_quantity, image_url, is_active, updated_at
                   FROM loyalty_admin.rewards
                   WHERE reward_id = @id::INT",
                 new { id = id });

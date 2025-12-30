@@ -1,4 +1,5 @@
 ﻿using LoyaltyAPI.Security;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -59,6 +60,17 @@ if (app.Environment.IsDevelopment())
 
 // Kích hoạt Middleware bảo mật cho toàn bộ API (trừ Swagger endpoints)
 app.UseMiddleware<ApiKeyMiddleware>();
+
+// Cấu hình static files để serve ảnh từ wwwroot
+app.UseStaticFiles();
+
+// Cấu hình static files để serve ảnh từ thư mục Uploads
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(
+        Path.Combine(builder.Environment.ContentRootPath, "Uploads")),
+    RequestPath = "/Uploads"
+});
 
 app.UseHttpsRedirection();
 app.UseAuthorization();

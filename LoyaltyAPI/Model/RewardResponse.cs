@@ -7,6 +7,7 @@
         public string Description { get; set; }
         public long Points_Cost { get; set; }
         public int Stock_Quantity { get; set; }
+        public string? Image_Url { get; set; }
         public DateTime Updated_At { get; set; }
     }
 }

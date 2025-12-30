@@ -16,20 +16,19 @@ $$ LANGUAGE SQL;
 
 
 
-CREATE OR REPLACE FUNCTION loyalty_admin.authenticate_user(
-    p_username STRING, 
-    p_password_hash STRING
+CREATE OR REPLACE FUNCTION loyalty_admin.get_user_by_username(
+    p_username STRING
 )
 RETURNS TABLE (
     user_id INT,
     username STRING,
+    password_hash STRING,
     user_role STRING
 ) 
 AS $$
-    SELECT user_id, username, user_role 
+    SELECT user_id, username, password_hash, user_role 
     FROM loyalty_admin.users 
-    WHERE username = p_username 
-      AND password_hash = p_password_hash;
+    WHERE username = p_username;
 $$ LANGUAGE SQL;
 
 --SELECT * FROM loyalty_admin.authenticate_user('khachhang_a', 'hashed_pass_kh_a');
@@ -47,6 +46,7 @@ RETURNS TABLE (
     description TEXT,
     points_cost BIGINT,
     stock_quantity INT,
+    image_url VARCHAR(500),
     updated_at TIMESTAMP
 ) AS $$
 DECLARE
@@ -77,6 +77,7 @@ BEGIN
         r.description, 
         r.points_cost, 
         r.stock_quantity, 
+        r.image_url,
         r.updated_at
     FROM loyalty_admin.rewards r
     WHERE r.is_active = TRUE 

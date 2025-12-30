@@ -47,9 +47,34 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "request",
-        "Type": "LoyaltyAPI.Model.CreateRewardRequest",
-        "IsRequired": true
+        "Name": "rewardName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "description",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "pointsCost",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "stockQuantity",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "isActive",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "imageFile",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
@@ -176,6 +201,22 @@
       {
         "Name": "request",
         "Type": "LoyaltyAPI.Model.LoginRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LoyaltyAPI.Controllers.UserController",
+    "Method": "Register",
+    "RelativePath": "api/User/register",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "LoyaltyAPI.Model.RegisterRequest",
         "IsRequired": true
       }
     ],

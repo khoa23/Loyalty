@@ -63,10 +63,10 @@ CREATE INDEX idx_history_customer ON loyalty_admin.redemption_history (customer_
 
 
 INSERT INTO loyalty_admin.users (username, password_hash, user_role) VALUES
-('admin_loan', 'hashed_pass_admin_123', 'Admin'),
-('khachhang_a', 'hashed_pass_kh_a', 'Customer'),
-('khachhang_b', 'hashed_pass_kh_b', 'Customer'),
-('khachhang_c', 'hashed_pass_kh_c', 'Customer');
+('admin_loan', '$2a$12$AR8fr6S1zkeDMQPAozx29O4w4hPVz6zxMpouVL1HKCoYa1l1FzFiW', 'Admin'),
+('khachhang_a', '$2a$12$AR8fr6S1zkeDMQPAozx29O4w4hPVz6zxMpouVL1HKCoYa1l1FzFiW', 'Customer'),
+('khachhang_b', '$2a$12$AR8fr6S1zkeDMQPAozx29O4w4hPVz6zxMpouVL1HKCoYa1l1FzFiW', 'Customer'),
+('khachhang_c', '$2a$12$AR8fr6S1zkeDMQPAozx29O4w4hPVz6zxMpouVL1HKCoYa1l1FzFiW', 'Customer');
 
 
 INSERT INTO loyalty_admin.customers (user_id, cif_number, full_name, current_points, phone_number) VALUES

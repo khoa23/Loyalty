@@ -19,7 +19,7 @@ namespace LoyaltyAPI.Controllers
             _configuration = configuration;
         }
 
-        // 1. API Lấy danh sách quà có sẵn bằng function get_available_rewards_paged
+        // 1. API Lấy danh sách quà có sẵn cho customer với phân trang đầy đủ
         [HttpGet("rewards")]
         public async Task<IActionResult> GetAvailableRewards([FromQuery] int page = 1, [FromQuery] int pageSize = 10)
         {
@@ -30,12 +30,17 @@ namespace LoyaltyAPI.Controllers
             if (pageSize <= 0) pageSize = 10;
             if (pageSize > 100) pageSize = 100; // Giới hạn tối đa 100 items mỗi trang
 
+            // Lấy tổng số quà có sẵn (is_active = true)
+            var totalCount = await db.ExecuteScalarAsync<int>(
+                "SELECT COUNT(*) FROM loyalty_admin.rewards WHERE is_active = true");
+
             // Gọi function get_available_rewards với page và pageSize
             var rewards = await db.QueryAsync<RewardResponse>(
                 "SELECT * FROM loyalty_admin.get_available_rewards(@page, @pageSize)",
                 new { page = page, pageSize = pageSize });
 
             var rewardsList = rewards.ToList();
+            var totalPages = (int)Math.Ceiling((double)totalCount / pageSize);
 
             return Ok(new
             {
@@ -43,8 +48,52 @@ namespace LoyaltyAPI.Controllers
                 Data = rewardsList,
                 Page = page,
                 PageSize = pageSize,
-                TotalCount = rewardsList.Count,
-                HasMore = rewardsList.Count == pageSize // Có thể có thêm trang tiếp theo
+                TotalCount = totalCount,
+                TotalPages = totalPages,
+                HasNext = page < totalPages,
+                HasPrevious = page > 1
+            });
+        }
+
+        // 2. API Lấy tất cả quà cho admin (bao gồm inactive) với phân trang
+        [HttpGet("admin/rewards")]
+        public async Task<IActionResult> GetAllRewardsForAdmin([FromQuery] int page = 1, [FromQuery] int pageSize = 10)
+        {
+            using IDbConnection db = new NpgsqlConnection(_connectionString);
+
+            // Validate parameters
+            if (page < 1) page = 1;
+            if (pageSize <= 0) pageSize = 10;
+            if (pageSize > 100) pageSize = 100; // Giới hạn tối đa 100 items mỗi trang
+
+            // Tính offset
+            var offset = (page - 1) * pageSize;
+
+            // Lấy tổng số quà
+            var totalCount = await db.ExecuteScalarAsync<int>(
+                "SELECT COUNT(*) FROM loyalty_admin.rewards");
+
+            // Lấy danh sách quà theo trang
+            var rewards = await db.QueryAsync<RewardResponse>(
+                @"SELECT reward_id::text as reward_id, reward_name, description, points_cost, stock_quantity, image_url, is_active, updated_at
+                  FROM loyalty_admin.rewards
+                  ORDER BY updated_at DESC
+                  LIMIT @pageSize OFFSET @offset",
+                new { pageSize = pageSize, offset = offset });
+
+            var rewardsList = rewards.ToList();
+            var totalPages = (int)Math.Ceiling((double)totalCount / pageSize);
+
+            return Ok(new
+            {
+                Message = "Lấy danh sách quà thành công",
+                Data = rewardsList,
+                Page = page,
+                PageSize = pageSize,
+                TotalCount = totalCount,
+                TotalPages = totalPages,
+                HasNext = page < totalPages,
+                HasPrevious = page > 1
             });
         }
 
@@ -326,70 +375,136 @@ namespace LoyaltyAPI.Controllers
             });
         }
 
-        // 6. API Sửa thông tin quà
+        // 6. API Sửa thông tin quà (có thể upload ảnh mới)
         [HttpPut("rewards/{id}")]
-        public async Task<IActionResult> UpdateReward(long id, [FromBody] UpdateRewardRequest request)
+        public async Task<IActionResult> UpdateReward(long id,
+            [FromForm] string rewardName,
+            [FromForm] string? description,
+            [FromForm] long pointsCost,
+            [FromForm] int stockQuantity,
+            [FromForm] bool isActive = true,
+            IFormFile? imageFile = null)
         {
             // Validate dữ liệu đầu vào
-            if (string.IsNullOrWhiteSpace(request.RewardName))
+            if (string.IsNullOrWhiteSpace(rewardName))
                 return BadRequest("Tên quà không được để trống");
 
-            if (request.PointsCost <= 0)
+            if (pointsCost <= 0)
                 return BadRequest("Điểm đổi quà phải lớn hơn 0");
 
-            if (request.StockQuantity < 0)
+            if (stockQuantity < 0)
                 return BadRequest("Số lượng tồn kho không được âm");
+
+            // Lấy lastUpdatedBy từ Request.Form
+            string? lastUpdatedByRaw = Request.Form["lastUpdatedBy"].FirstOrDefault();
+            long? lastUpdatedByValue = null;
+            if (!string.IsNullOrWhiteSpace(lastUpdatedByRaw))
+            {
+                var cleanString = lastUpdatedByRaw.Trim();
+                if (cleanString.StartsWith("-"))
+                {
+                    cleanString = "-" + string.Join("", cleanString.Substring(1).Where(char.IsDigit));
+                }
+                else
+                {
+                    cleanString = string.Join("", cleanString.Where(char.IsDigit));
+                }
+
+                if (long.TryParse(cleanString, out long parsedValue))
+                {
+                    lastUpdatedByValue = parsedValue;
+                }
+            }
+
+            // Validate file nếu có
+            if (imageFile != null && imageFile.Length > 0)
+            {
+                var maxFileSize = _configuration.GetValue<long>("UploadConfig:MaxFileSize", 5 * 1024 * 1024);
+                if (imageFile.Length > maxFileSize)
+                {
+                    var maxSizeMB = maxFileSize / (1024 * 1024);
+                    return BadRequest($"Kích thước file không được vượt quá {maxSizeMB}MB");
+                }
+
+                var allowedExtensions = _configuration.GetSection("UploadConfig:AllowedExtensions").Get<string[]>()
+                    ?? new[] { ".jpg", ".jpeg", ".png", ".gif", ".webp" };
+                var fileExtension = Path.GetExtension(imageFile.FileName).ToLowerInvariant();
+                if (!allowedExtensions.Contains(fileExtension))
+                {
+                    var extensionsList = string.Join(", ", allowedExtensions);
+                    return BadRequest($"Chỉ chấp nhận file ảnh với định dạng: {extensionsList}");
+                }
+            }
 
             using IDbConnection db = new NpgsqlConnection(_connectionString);
 
             try
             {
-                // Kiểm tra quà có tồn tại không - sử dụng CAST để đảm bảo type matching
+                // Kiểm tra quà có tồn tại không
                 var existingReward = await db.QueryFirstOrDefaultAsync<dynamic>(
-                    "SELECT reward_id FROM loyalty_admin.rewards WHERE reward_id = @id::INT",
+                    "SELECT reward_id, image_url FROM loyalty_admin.rewards WHERE reward_id = @id",
                     new { id = id });
 
                 if (existingReward == null)
-                    return NotFound($"Không tìm thấy quà với ID: {id}");
+                    return NotFound("Không tìm thấy quà");
 
-                // Kiểm tra tên quà đã tồn tại ở quà khác chưa
-                var duplicateName = await db.QueryFirstOrDefaultAsync<dynamic>(
-                    "SELECT reward_id FROM loyalty_admin.rewards WHERE reward_name = @rewardName AND reward_id != @id::INT",
-                    new { rewardName = request.RewardName, id = id });
+                // Kiểm tra tên quà đã tồn tại chưa (trừ quà hiện tại)
+                var duplicateReward = await db.QueryFirstOrDefaultAsync<dynamic>(
+                    "SELECT reward_id FROM loyalty_admin.rewards WHERE reward_name = @rewardName AND reward_id != @id",
+                    new { rewardName = rewardName, id = id });
 
-                if (duplicateName != null)
-                    return Conflict("Tên quà đã tồn tại ở quà khác");
+                if (duplicateReward != null)
+                    return Conflict("Tên quà đã tồn tại");
 
-                // Cập nhật thông tin quà - sử dụng CAST để đảm bảo type matching
-                var rowsAffected = await db.ExecuteAsync(
-                    @"UPDATE loyalty_admin.rewards
-                      SET reward_name = @rewardName,
-                          description = @description,
-                          points_cost = @pointsCost,
-                          stock_quantity = @stockQuantity,
-                          is_active = @isActive,
-                          last_updated_by = @lastUpdatedBy,
-                          updated_at = now()
-                      WHERE reward_id = @id::INT",
+                // Upload ảnh mới nếu có
+                string? imageUrl = existingReward.image_url; // Giữ nguyên ảnh cũ
+                if (imageFile != null && imageFile.Length > 0)
+                {
+                    var rewardImageFolder = _configuration.GetValue<string>("UploadConfig:RewardImageFolder", "Uploads/rewards");
+                    var rewardImageUrlPrefix = _configuration.GetValue<string>("UploadConfig:RewardImageUrlPrefix", "/Uploads/rewards");
+                    var fileExtension = Path.GetExtension(imageFile.FileName).ToLowerInvariant();
+
+                    var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), rewardImageFolder);
+                    if (!Directory.Exists(uploadsFolder))
+                    {
+                        Directory.CreateDirectory(uploadsFolder);
+                    }
+
+                    var fileName = $"reward_{id}_{DateTime.UtcNow:yyyyMMddHHmmss}{fileExtension}";
+                    var filePath = Path.Combine(uploadsFolder, fileName);
+
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await imageFile.CopyToAsync(stream);
+                    }
+
+                    imageUrl = $"{rewardImageUrlPrefix}/{fileName}";
+                }
+
+                // Cập nhật quà
+                await db.ExecuteAsync(
+                    @"UPDATE loyalty_admin.rewards 
+                      SET reward_name = @rewardName, description = @description, points_cost = @pointsCost, 
+                          stock_quantity = @stockQuantity, is_active = @isActive, image_url = @imageUrl,
+                          last_updated_by = @lastUpdatedBy, updated_at = now()
+                      WHERE reward_id = @id",
                     new
                     {
                         id = id,
-                        rewardName = request.RewardName,
-                        description = request.Description ?? string.Empty,
-                        pointsCost = request.PointsCost,
-                        stockQuantity = request.StockQuantity,
-                        isActive = request.IsActive,
-                        lastUpdatedBy = request.LastUpdatedBy.HasValue ? (long?)request.LastUpdatedBy.Value : null
+                        rewardName = rewardName,
+                        description = description ?? string.Empty,
+                        pointsCost = pointsCost,
+                        stockQuantity = stockQuantity,
+                        isActive = isActive,
+                        imageUrl = imageUrl,
+                        lastUpdatedBy = lastUpdatedByValue
                     });
 
-                if (rowsAffected == 0)
-                    return NotFound($"Không tìm thấy quà với ID: {id} để cập nhật");
-
-                // Lấy thông tin quà đã cập nhật - sử dụng CAST để đảm bảo type matching
+                // Lấy thông tin quà đã cập nhật
                 var updatedReward = await db.QueryFirstOrDefaultAsync<RewardResponse>(
-                    @"SELECT reward_id::text as reward_id, reward_name, description, points_cost, stock_quantity, image_url, updated_at
+                    @"SELECT reward_id::text as reward_id, reward_name, description, points_cost, stock_quantity, image_url, is_active, updated_at
                       FROM loyalty_admin.rewards
-                      WHERE reward_id = @id::INT",
+                      WHERE reward_id = @id",
                     new { id = id });
 
                 return Ok(new

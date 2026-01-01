@@ -16,7 +16,7 @@
 
     @if (Model.Reward != null)
     {
-        <form method="post" class="mt-4">
+        <form method="post" enctype="multipart/form-data" class="mt-4">
             <input type="hidden" name="rewardId" value="@Model.Reward.Reward_Id" />
             
             <div class="mb-3">
@@ -34,6 +34,17 @@
             <div class="mb-3">
                 <label for="stockQuantity" class="form-label">Số lượng tồn kho <span class="text-danger">*</span></label>
                 <input type="number" class="form-control" id="stockQuantity" name="stockQuantity" value="@Model.Reward.Stock_Quantity" required min="0">
+            </div>
+            <div class="mb-3">
+                <label for="imageFile" class="form-label">Ảnh quà (để trống nếu không muốn thay đổi)</label>
+                <input type="file" class="form-control" id="imageFile" name="imageFile" accept="image/*">
+                @if (!string.IsNullOrEmpty(Model.Reward.Image_Url))
+                {
+                    <div class="mt-2">
+                        <small class="text-muted">Ảnh hiện tại:</small><br>
+                        <img src="@Model.GetImageUrl(Model.Reward.Image_Url)" alt="@Model.Reward.Reward_Name" style="max-width: 200px; max-height: 200px;" />
+                    </div>
+                }
             </div>
             <div class="mb-3">
                 <div class="form-check">

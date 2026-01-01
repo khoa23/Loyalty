@@ -16,10 +16,13 @@ namespace LoyaltyWebApp.Pages.Admin
             _configuration = configuration;
         }
 
+        public PaginatedRewardResult? PaginatedRewards { get; set; }
         public List<RewardItem>? Rewards { get; set; }
         public string? ErrorMessage { get; set; }
+        public int CurrentPage { get; set; } = 1;
+        public int PageSize { get; set; } = 1;
 
-        public async Task<IActionResult> OnGetAsync()
+        public async Task<IActionResult> OnGetAsync(int page = 1)
         {
             // Check authentication
             var userId = HttpContext.Session.GetString("UserId");
@@ -30,6 +33,7 @@ namespace LoyaltyWebApp.Pages.Admin
                 return RedirectToPage("/Login");
             }
 
+            CurrentPage = page < 1 ? 1 : page;
             await LoadRewards();
             return Page();
         }
@@ -62,10 +66,15 @@ namespace LoyaltyWebApp.Pages.Admin
 
         private async Task LoadRewards()
         {
-            Rewards = await _rewardService.GetRewardsAsync();
-            if (Rewards == null)
+            PaginatedRewards = await _rewardService.GetRewardsWithPaginationAsync(CurrentPage, PageSize);
+            if (PaginatedRewards != null)
+            {
+                Rewards = PaginatedRewards.Data;
+            }
+            else
             {
                 ErrorMessage = "Không thể tải danh sách quà";
+                Rewards = new List<RewardItem>();
             }
         }
 

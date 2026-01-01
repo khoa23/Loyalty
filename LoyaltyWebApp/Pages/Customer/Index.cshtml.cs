@@ -21,11 +21,15 @@ namespace LoyaltyWebApp.Pages.Customer
         }
 
         public List<RewardItem>? Rewards { get; set; }
+        public PaginatedRewardResult? PaginatedRewards { get; set; }
         public long CurrentPoints { get; set; }
         public string? ErrorMessage { get; set; }
         public string? SuccessMessage { get; set; }
+        public int CurrentPage { get; set; } = 1;
+        public int PageSize { get; set; } = 1;
+        public IConfiguration Configuration => _configuration;
 
-        public async Task<IActionResult> OnGetAsync()
+        public async Task<IActionResult> OnGetAsync(int page = 1)
         {
             // Check authentication
             var userId = HttpContext.Session.GetString("UserId");
@@ -36,6 +40,7 @@ namespace LoyaltyWebApp.Pages.Customer
                 return RedirectToPage("/Login");
             }
 
+            CurrentPage = page < 1 ? 1 : page;
             await LoadCustomerInfo(userId);
             await LoadRewards();
             return Page();
@@ -52,17 +57,25 @@ namespace LoyaltyWebApp.Pages.Customer
                 return RedirectToPage("/Login");
             }
 
-            if (long.TryParse(userId, out var customerId) && long.TryParse(rewardId, out var rewardIdLong))
+            if (long.TryParse(rewardId, out var rewardIdLong))
             {
-                var error = await _loyaltyService.RedeemRewardAsync(customerId, rewardIdLong, quantity);
-
-                if (error == null)
+                var customerIdStr = HttpContext.Session.GetString("CustomerId");
+                if (long.TryParse(customerIdStr, out var customerId))
                 {
-                    SuccessMessage = "Đổi quà thành công!";
+                    var error = await _loyaltyService.RedeemRewardAsync(customerId, rewardIdLong, quantity);
+
+                    if (error == null)
+                    {
+                        SuccessMessage = "Đổi quà thành công!";
+                    }
+                    else
+                    {
+                        ErrorMessage = error;
+                    }
                 }
                 else
                 {
-                    ErrorMessage = error;
+                    ErrorMessage = "Thông tin khách hàng không hợp lệ";
                 }
             }
             else
@@ -77,10 +90,15 @@ namespace LoyaltyWebApp.Pages.Customer
 
         private async Task LoadRewards()
         {
-            Rewards = await _rewardService.GetRewardsAsync();
-            if (Rewards == null)
+            PaginatedRewards = await _rewardService.GetCustomerRewardsWithPaginationAsync(CurrentPage, PageSize);
+            if (PaginatedRewards != null)
+            {
+                Rewards = PaginatedRewards.Data;
+            }
+            else
             {
                 ErrorMessage = "Không thể tải danh sách quà";
+                Rewards = new List<RewardItem>();
             }
         }
 
@@ -88,8 +106,8 @@ namespace LoyaltyWebApp.Pages.Customer
         {
             if (long.TryParse(userId, out var userIdLong))
             {
-                var points = await _userService.GetCustomerPointsAsync(userIdLong);
-                CurrentPoints = points ?? 0;
+                var customerInfo = await _userService.GetCustomerInfoAsync(userIdLong);
+                CurrentPoints = customerInfo?.Current_Points ?? 0;
             }
         }
 

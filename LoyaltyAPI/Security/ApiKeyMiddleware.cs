@@ -12,9 +12,9 @@
 
         public async Task InvokeAsync(HttpContext context)
         {
-            // Bỏ qua kiểm tra API Key cho Swagger endpoints
+            // Bỏ qua kiểm tra API Key cho Swagger endpoints, OPTIONS, và Uploads
             var path = context.Request.Path.Value?.ToLower() ?? "";
-            if (path.StartsWith("/swagger") || path == "/" || path == "")
+            if (path.StartsWith("/swagger") || path == "/" || path == "" || path.StartsWith("/uploads") || context.Request.Method == "OPTIONS")
             {
                 await _next(context);
                 return;

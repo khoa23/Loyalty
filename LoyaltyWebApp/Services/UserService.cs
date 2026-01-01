@@ -1,15 +1,18 @@
 using LoyaltyWebApp.Models;
 using System.Text.Json;
+using Microsoft.Extensions.Logging;
 
 namespace LoyaltyWebApp.Services
 {
     public class UserService : IUserService
     {
         private readonly IHttpClientFactory _httpClientFactory;
+        private readonly ILogger<UserService> _logger;
 
-        public UserService(IHttpClientFactory httpClientFactory)
+        public UserService(IHttpClientFactory httpClientFactory, ILogger<UserService> logger)
         {
             _httpClientFactory = httpClientFactory;
+            _logger = logger;
         }
 
         public async Task<LoginResponse?> LoginAsync(LoginRequest request)
@@ -19,26 +22,38 @@ namespace LoyaltyWebApp.Services
                 var httpClient = _httpClientFactory.CreateClient("LoyaltyAPI");
                 var response = await httpClient.PostAsJsonAsync("api/User/login", request);
 
+                _logger.LogInformation("Login API response status: {StatusCode}", response.StatusCode);
+
                 if (response.IsSuccessStatusCode)
                 {
                     var content = await response.Content.ReadAsStringAsync();
+                    _logger.LogInformation("Login API response content: {Content}", content);
+
                     var result = JsonSerializer.Deserialize<JsonElement>(content);
 
                     if (result.TryGetProperty("data", out var data))
                     {
-                        return JsonSerializer.Deserialize<LoginResponse>(
-                            data.GetRawText(),
-                            new JsonSerializerOptions
-                            {
-                                PropertyNameCaseInsensitive = true
-                            });
+                        var loginResponse = JsonSerializer.Deserialize<LoginResponse>(data.GetRawText(), new JsonSerializerOptions
+                        {
+                            PropertyNameCaseInsensitive = true
+                        });
+                        _logger.LogInformation("Login successful for user: {Username}", loginResponse?.Username);
+                        return loginResponse;
                     }
-
+                    else
+                    {
+                        _logger.LogWarning("Login API response does not contain 'Data' property");
+                    }
+                }
+                else
+                {
+                    var errorContent = await response.Content.ReadAsStringAsync();
+                    _logger.LogWarning("Login API failed with status {StatusCode}: {ErrorContent}", response.StatusCode, errorContent);
                 }
             }
-            catch
+            catch (Exception ex)
             {
-                // Return null on error
+                _logger.LogError(ex, "Exception during login API call");
             }
 
             return null;
@@ -70,7 +85,7 @@ namespace LoyaltyWebApp.Services
             }
         }
 
-        public async Task<long?> GetCustomerPointsAsync(long userId)
+        public async Task<CustomerInfo?> GetCustomerInfoAsync(long userId)
         {
             try
             {
@@ -80,12 +95,11 @@ namespace LoyaltyWebApp.Services
                 if (response.IsSuccessStatusCode)
                 {
                     var content = await response.Content.ReadAsStringAsync();
-                    var customer = JsonSerializer.Deserialize<JsonElement>(content);
-
-                    if (customer.TryGetProperty("current_points", out var points))
+                    var customer = JsonSerializer.Deserialize<CustomerInfo>(content, new JsonSerializerOptions
                     {
-                        return points.GetInt64();
-                    }
+                        PropertyNameCaseInsensitive = true
+                    });
+                    return customer;
                 }
             }
             catch
@@ -94,6 +108,12 @@ namespace LoyaltyWebApp.Services
             }
 
             return null;
+        }
+
+        public async Task<long?> GetCustomerPointsAsync(long userId)
+        {
+            var customerInfo = await GetCustomerInfoAsync(userId);
+            return customerInfo?.Current_Points;
         }
     }
 }

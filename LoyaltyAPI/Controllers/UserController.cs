@@ -1,7 +1,9 @@
 ﻿using Dapper;
 using LoyaltyAPI.Model;
 using LoyaltyAPI.Security;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using Npgsql;
 using System.Data;
 
@@ -12,10 +14,12 @@ namespace LoyaltyAPI.Controllers
     public class UserController : ControllerBase
     {
         private readonly string _connectionString;
+        private readonly ILogger<UserController> _logger;
 
-        public UserController(IConfiguration configuration)
+        public UserController(IConfiguration configuration, ILogger<UserController> logger)
         {
             _connectionString = configuration.GetConnectionString("CockroachDb");
+            _logger = logger;
         }
 
         // API Đăng nhập với băm password bằng BCrypt
@@ -36,6 +40,7 @@ namespace LoyaltyAPI.Controllers
 
             if (user == null)
             {
+                _logger.LogWarning("Failed login attempt for username {Username}: user not found.", request.Username);
                 return Unauthorized("Sai tên đăng nhập hoặc mật khẩu");
             }
 
@@ -45,10 +50,21 @@ namespace LoyaltyAPI.Controllers
 
             if (!isPasswordValid)
             {
+                _logger.LogWarning("Failed login attempt for username {Username}: invalid password.", request.Username);
                 return Unauthorized("Sai tên đăng nhập hoặc mật khẩu");
             }
 
+            // Lấy customer_id nếu là Customer
+            long? customerId = null;
+            if (user.user_role == "Customer")
+            {
+                customerId = await db.QueryFirstOrDefaultAsync<long?>(
+                    "SELECT customer_id FROM loyalty_admin.customers WHERE user_id = @userId",
+                    new { userId = user.user_id });
+            }
+
             // Trả về thông tin user (không bao gồm password_hash)
+            _logger.LogInformation("User {Username} logged in successfully.", request.Username);
             return Ok(new
             {
                 Message = "Đăng nhập thành công",
@@ -56,7 +72,8 @@ namespace LoyaltyAPI.Controllers
                 {
                     user_id = user.user_id,
                     username = user.username,
-                    user_role = user.user_role
+                    user_role = user.user_role,
+                    customer_id = customerId
                 }
             });
         }
@@ -221,19 +238,45 @@ namespace LoyaltyAPI.Controllers
             return $"CIF{nextNumber:D6}";
         }
 
-        // API Lấy thông tin khách hàng bằng function get_customer_info
-        [HttpGet("customer/{userId}")]
-        public async Task<IActionResult> GetCustomer(long userId)
+        // API Lấy danh sách quà có sẵn cho customer với phân trang
+        [HttpGet("customer/rewards")]
+        [EnableCors("AllowAll")]
+        public async Task<IActionResult> GetCustomer([FromQuery] int page = 1, [FromQuery] int pageSize = 5)
         {
+            _logger.LogInformation("GetCustomer called with page {Page}, pageSize {PageSize}", page, pageSize);
+
             using IDbConnection db = new NpgsqlConnection(_connectionString);
 
-            var customer = await db.QueryFirstOrDefaultAsync<dynamic>(
-                "SELECT * FROM loyalty_admin.get_customer_info(@uid)",
-                new { uid = userId });
+            // Validate parameters
+            if (page < 1) page = 1;
+            if (pageSize <= 0) pageSize = 10;
+            if (pageSize > 100) pageSize = 100; // Giới hạn tối đa 100 items mỗi trang
 
-            if (customer == null) return NotFound("Không tìm thấy khách hàng");
+            // Lấy tổng số quà có sẵn (is_active = true)
+            var totalCount = await db.ExecuteScalarAsync<int>(
+                "SELECT COUNT(*) FROM loyalty_admin.rewards WHERE is_active = true AND stock_quantity > 0");
 
-            return Ok(customer);
+            // Gọi function get_available_rewards với page và pageSize
+            var rewards = await db.QueryAsync<RewardResponse>(
+                "SELECT * FROM loyalty_admin.get_available_rewards(@page, @pageSize)",
+                new { page = page, pageSize = pageSize });
+
+            var rewardsList = rewards.ToList();
+            var totalPages = (int)Math.Ceiling((double)totalCount / pageSize);
+
+            _logger.LogInformation("GetCustomer returned {Count} rewards for page {Page}, totalCount {TotalCount}", rewardsList.Count, page, totalCount);
+
+            return Ok(new
+            {
+                Message = "Lấy danh sách quà thành công",
+                Data = rewardsList,
+                Page = page,
+                PageSize = pageSize,
+                TotalCount = totalCount,
+                TotalPages = totalPages,
+                HasNext = page < totalPages,
+                HasPrevious = page > 1
+            });
         }
     }
 }

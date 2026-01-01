@@ -61,6 +61,10 @@ namespace LoyaltyWebApp.Pages
                 HttpContext.Session.SetString("UserId", loginResponse.User_Id.ToString());
                 HttpContext.Session.SetString("Username", loginResponse.Username);
                 HttpContext.Session.SetString("UserRole", loginResponse.User_Role);
+                if (loginResponse.Customer_Id.HasValue)
+                {
+                    HttpContext.Session.SetString("CustomerId", loginResponse.Customer_Id.Value.ToString());
+                }
 
                 // Redirect theo role
                 if (loginResponse.User_Role == "Admin")

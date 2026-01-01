@@ -12,6 +12,9 @@ namespace LoyaltyWebApp.Models
 
         [JsonPropertyName("user_role")]
         public string User_Role { get; set; } = string.Empty;
+
+        [JsonPropertyName("customer_id")]
+        public long? Customer_Id { get; set; }
     }
 }
 

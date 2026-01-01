@@ -34,9 +34,10 @@ namespace LoyaltyWebApp.Pages.Customer
 
         private async Task LoadHistory(string userId)
         {
-            if (long.TryParse(userId, out var userIdLong))
+            var customerIdStr = HttpContext.Session.GetString("CustomerId");
+            if (long.TryParse(customerIdStr, out var customerId))
             {
-                History = await _loyaltyService.GetRedemptionHistoryAsync(userIdLong);
+                History = await _loyaltyService.GetRedemptionHistoryAsync(customerId);
                 if (History == null)
                 {
                     ErrorMessage = "Không thể tải lịch sử đổi quà";
@@ -44,7 +45,7 @@ namespace LoyaltyWebApp.Pages.Customer
             }
             else
             {
-                ErrorMessage = "Thông tin người dùng không hợp lệ";
+                ErrorMessage = "Thông tin khách hàng không hợp lệ";
             }
         }
     }

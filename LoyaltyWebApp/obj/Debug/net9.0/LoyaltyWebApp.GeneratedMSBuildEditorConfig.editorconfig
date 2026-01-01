@@ -32,12 +32,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Code/LoyaltyAPI/LoyaltyWebApp/Pages/Admin/_RewardTable.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cX1Jld2FyZFRhYmxlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Code/LoyaltyAPI/LoyaltyWebApp/Pages/Customer/History.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VzdG9tZXJcSGlzdG9yeS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Code/LoyaltyAPI/LoyaltyWebApp/Pages/Customer/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VzdG9tZXJcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Code/LoyaltyAPI/LoyaltyWebApp/Pages/Customer/_RewardList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VzdG9tZXJcX1Jld2FyZExpc3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Code/LoyaltyAPI/LoyaltyWebApp/Pages/Error.cshtml]

@@ -82,6 +82,7 @@ BEGIN
     FROM loyalty_admin.rewards r
     WHERE r.is_active = TRUE 
       AND r.stock_quantity > 0
+	  AND r.is_active = true
     ORDER BY r.updated_at DESC, r.reward_id DESC
     LIMIT _limit 
     OFFSET _offset;

@@ -101,6 +101,38 @@
         }
       }
     },
+    "/api/Loyalty/admin/rewards": {
+      "get": {
+        "tags": [
+          "Loyalty"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 1
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 10
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Loyalty/rewards/{id}": {
       "get": {
         "tags": [
@@ -140,19 +172,53 @@
         ],
         "requestBody": {
           "content": {
-            "application/json": {
+            "multipart/form-data": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateRewardRequest"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateRewardRequest"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateRewardRequest"
+                "type": "object",
+                "properties": {
+                  "rewardName": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "pointsCost": {
+                    "type": "integer",
+                    "format": "int64"
+                  },
+                  "stockQuantity": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "isActive": {
+                    "type": "boolean",
+                    "default": true
+                  },
+                  "imageFile": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              },
+              "encoding": {
+                "rewardName": {
+                  "style": "form"
+                },
+                "description": {
+                  "style": "form"
+                },
+                "pointsCost": {
+                  "style": "form"
+                },
+                "stockQuantity": {
+                  "style": "form"
+                },
+                "isActive": {
+                  "style": "form"
+                },
+                "imageFile": {
+                  "style": "form"
+                }
               }
             }
           }
@@ -338,19 +404,28 @@
         }
       }
     },
-    "/api/User/customer/{userId}": {
+    "/api/User/customer/rewards": {
       "get": {
         "tags": [
           "User"
         ],
         "parameters": [
           {
-            "name": "userId",
-            "in": "path",
-            "required": true,
+            "name": "page",
+            "in": "query",
             "schema": {
               "type": "integer",
-              "format": "int64"
+              "format": "int32",
+              "default": 1
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 5
             }
           }
         ],
@@ -381,11 +456,11 @@
       "RedeemRewardRequest": {
         "type": "object",
         "properties": {
-          "customerId": {
+          "customer_id": {
             "type": "integer",
             "format": "int64"
           },
-          "rewardId": {
+          "reward_id": {
             "type": "integer",
             "format": "int64"
           },
@@ -413,36 +488,6 @@
           },
           "phoneNumber": {
             "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "UpdateRewardRequest": {
-        "type": "object",
-        "properties": {
-          "rewardName": {
-            "type": "string",
-            "nullable": true
-          },
-          "description": {
-            "type": "string",
-            "nullable": true
-          },
-          "pointsCost": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "stockQuantity": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "isActive": {
-            "type": "boolean"
-          },
-          "lastUpdatedBy": {
-            "type": "integer",
-            "format": "int64",
             "nullable": true
           }
         },

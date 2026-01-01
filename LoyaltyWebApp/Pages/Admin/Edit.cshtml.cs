@@ -8,10 +8,12 @@ namespace LoyaltyWebApp.Pages.Admin
     public class EditModel : PageModel
     {
         private readonly IRewardService _rewardService;
+        private readonly IConfiguration _configuration;
 
-        public EditModel(IRewardService rewardService)
+        public EditModel(IRewardService rewardService, IConfiguration configuration)
         {
             _rewardService = rewardService;
+            _configuration = configuration;
         }
 
         public RewardItem? Reward { get; set; }
@@ -48,7 +50,8 @@ namespace LoyaltyWebApp.Pages.Admin
             long pointsCost,
             int stockQuantity,
             bool isActive,
-            long? lastUpdatedBy)
+            long? lastUpdatedBy,
+            IFormFile? imageFile)
         {
             // Check authentication
             var userId = HttpContext.Session.GetString("UserId");
@@ -62,7 +65,7 @@ namespace LoyaltyWebApp.Pages.Admin
             UserId = userId;
 
             long? lastUpdatedByValue = long.TryParse(userId, out var uid) ? uid : null;
-            var error = await _rewardService.UpdateRewardAsync(rewardId, rewardName, description, pointsCost, stockQuantity, isActive, lastUpdatedByValue);
+            var error = await _rewardService.UpdateRewardAsync(rewardId, rewardName, description, pointsCost, stockQuantity, isActive, lastUpdatedByValue, imageFile);
 
             if (error == null)
             {
@@ -84,6 +87,12 @@ namespace LoyaltyWebApp.Pages.Admin
             {
                 ErrorMessage = "Không thể tải thông tin quà";
             }
+        }
+
+        public string GetImageUrl(string? imageUrl)
+        {
+            var apiBaseUrl = _configuration.GetValue<string>("ApiBaseUrl") ?? "https://localhost:5001/";
+            return _rewardService.GetImageUrl(imageUrl, apiBaseUrl);
         }
     }
 }

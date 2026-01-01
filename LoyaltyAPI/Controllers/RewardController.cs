@@ -1,6 +1,7 @@
 ﻿using Dapper;
 using LoyaltyAPI.Model;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using Npgsql;
 using System.Data;
 
@@ -11,10 +12,12 @@ namespace LoyaltyAPI.Controllers
     public class RewardController : ControllerBase
     {
         private readonly string _connectionString;
+        private readonly ILogger<RewardController> _logger;
 
-        public RewardController(IConfiguration configuration)
+        public RewardController(IConfiguration configuration, ILogger<RewardController> logger)
         {
             _connectionString = configuration.GetConnectionString("CockroachDb");
+            _logger = logger;
         }
 
         // API Đổi quà
@@ -31,6 +34,8 @@ namespace LoyaltyAPI.Controllers
             if (request.Quantity <= 0)
                 return BadRequest("Số lượng phải lớn hơn 0");
 
+            _logger.LogInformation("Redeem reward request: CustomerId={CustomerId}, RewardId={RewardId}, Quantity={Quantity}", request.CustomerId, request.RewardId, request.Quantity);
+
             using IDbConnection db = new NpgsqlConnection(_connectionString);
 
             try
@@ -46,8 +51,12 @@ namespace LoyaltyAPI.Controllers
                     });
 
                 if (result == null)
+                {
+                    _logger.LogWarning("Failed to redeem reward for customer {CustomerId}, reward {RewardId}, quantity {Quantity}: redeem function returned null", request.CustomerId, request.RewardId, request.Quantity);
                     return BadRequest("Không thể đổi quà. Vui lòng kiểm tra lại thông tin.");
+                }
 
+                _logger.LogInformation("Reward redeemed successfully for customer {CustomerId}, reward {RewardId}, quantity {Quantity}", request.CustomerId, request.RewardId, request.Quantity);
                 return Ok(new
                 {
                     Message = "Đổi quà thành công",
@@ -57,10 +66,12 @@ namespace LoyaltyAPI.Controllers
             catch (PostgresException ex)
             {
                 // Xử lý lỗi từ PostgreSQL function (RAISE EXCEPTION)
+                _logger.LogWarning(ex, "PostgreSQL exception during reward redemption for customer {CustomerId}, reward {RewardId}, quantity {Quantity}", request.CustomerId, request.RewardId, request.Quantity);
                 return BadRequest($"Lỗi khi đổi quà: {ex.Message}");
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, "Exception during reward redemption for customer {CustomerId}, reward {RewardId}, quantity {Quantity}", request.CustomerId, request.RewardId, request.Quantity);
                 return StatusCode(500, $"Lỗi khi đổi quà: {ex.Message}");
             }
         }
@@ -96,6 +107,7 @@ namespace LoyaltyAPI.Controllers
 
                 var historyList = history.ToList();
 
+                _logger.LogInformation("Redemption history retrieved successfully for customer {CustomerId}, page {Page}, pageSize {PageSize}, count {Count}", customerId, page, pageSize, historyList.Count);
                 return Ok(new
                 {
                     Message = "Lấy lịch sử đổi quà thành công",
@@ -108,6 +120,7 @@ namespace LoyaltyAPI.Controllers
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, "Exception during redemption history retrieval for customer {CustomerId}, page {Page}, pageSize {PageSize}", customerId, page, pageSize);
                 return StatusCode(500, $"Lỗi khi lấy lịch sử đổi quà: {ex.Message}");
             }
         }

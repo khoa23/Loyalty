@@ -1,0 +1,107 @@
+@model LoyaltyWebApp.Models.RewardListViewModel
+@{
+    var apiBaseUrl = ViewData["ApiBaseUrl"] as string;
+    string GetImageUrl(string url)
+    {
+        if (string.IsNullOrEmpty(url)) return null;
+        if (url.StartsWith("http", StringComparison.OrdinalIgnoreCase)) return url;
+        return apiBaseUrl + url.TrimStart('/');
+    }
+}
+
+<div class="row">
+    @if (Model != null && Model.Data != null && Model.Data.Any())
+    {
+        foreach (var reward in Model.Data)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    @if (!string.IsNullOrEmpty(reward.Image_Url))
+                    {
+                        <img src="@GetImageUrl(reward.Image_Url)" class="card-img-top" alt="@reward.Reward_Name" style="height: 200px; object-fit: cover;">
+                    }
+                    else
+                    {
+                        <div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height: 200px;">
+                            <span class="text-muted">Không có ảnh</span>
+                        </div>
+                    }
+                    <div class="card-body">
+                        <h5 class="card-title">@reward.Reward_Name</h5>
+                        <p class="card-text">@reward.Description</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="badge bg-warning text-dark">@reward.Points_Cost điểm</span>
+                            <span class="text-muted">Còn: @reward.Stock_Quantity</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button type="button" class="btn btn-primary w-100" 
+                                onclick="showRedeemModal('@reward.Reward_Id', '@reward.Reward_Name', @reward.Points_Cost, @reward.Stock_Quantity, currentPoints)">
+                            Đổi quà
+                        </button>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <div class="col-12">
+            <div class="alert alert-info">Hiện tại không có quà nào.</div>
+        </div>
+    }
+</div>
+
+@if (Model != null && Model.TotalPages > 1)
+{
+    <nav aria-label="Phân trang quà">
+        <ul class="pagination justify-content-center">
+            @if (Model.HasPrevious)
+            {
+                <li class="page-item">
+                    <a href="javascript:void(0)" onclick="loadPage(@(Model.Page - 1))" class="page-link">Trước</a>
+                </li>
+            }
+            else
+            {
+                <li class="page-item disabled">
+                    <span class="page-link">Trước</span>
+                </li>
+            }
+
+            @for (int i = Math.Max(1, Model.Page - 2); i <= Math.Min(Model.TotalPages, Model.Page + 2); i++)
+            {
+                if (i == Model.Page)
+                {
+                    <li class="page-item active">
+                        <span class="page-link">@i</span>
+                    </li>
+                }
+                else
+                {
+                    <li class="page-item">
+                        <a href="javascript:void(0)" onclick="loadPage(@i)" class="page-link">@i</a>
+                    </li>
+                }
+            }
+
+            @if (Model.HasNext)
+            {
+                <li class="page-item">
+                    <a href="javascript:void(0)" onclick="loadPage(@(Model.Page + 1))" class="page-link">Sau</a>
+                </li>
+            }
+            else
+            {
+                <li class="page-item disabled">
+                    <span class="page-link">Sau</span>
+                </li>
+            }
+        </ul>
+    </nav>
+
+    <div class="text-center text-muted mt-2">
+        Trang @Model.Page / @Model.TotalPages
+        (Tổng cộng @Model.TotalCount quà)
+    </div>
+}

@@ -10,6 +10,9 @@
         <div>
             <span class="badge bg-primary fs-6">Điểm hiện có: <strong>@Model.CurrentPoints</strong></span>
         </div>
+        <span id="currentPoints" style="display:none">@Model.CurrentPoints</span>
+        <span id="apiBaseUrl" style="display:none">@(Model.Configuration.GetValue<string>("ApiBaseUrl") ?? "https://localhost:5001/")</span>
+        <span id="apiKey" style="display:none">@(Model.Configuration.GetValue<string>("ApiKey") ?? "")</span>
     </div>
 
     @if (!string.IsNullOrEmpty(Model.ErrorMessage))
@@ -26,46 +29,13 @@
         </div>
     }
 
-    @if (Model.Rewards != null && Model.Rewards.Any())
-    {
-        <div class="row">
-            @foreach (var reward in Model.Rewards)
-            {
-                <div class="col-md-4 mb-4">
-                    <div class="card h-100">
-                        @if (!string.IsNullOrEmpty(reward.Image_Url))
-                        {
-                            <img src="@Model.GetImageUrl(reward.Image_Url)" class="card-img-top" alt="@reward.Reward_Name" style="height: 200px; object-fit: cover;">
-                        }
-                        else
-                        {
-                            <div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height: 200px;">
-                                <span class="text-muted">Không có ảnh</span>
-                            </div>
-                        }
-                        <div class="card-body">
-                            <h5 class="card-title">@reward.Reward_Name</h5>
-                            <p class="card-text">@reward.Description</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <span class="badge bg-warning text-dark">@reward.Points_Cost điểm</span>
-                                <span class="text-muted">Còn: @reward.Stock_Quantity</span>
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            <button type="button" class="btn btn-primary w-100" 
-                                    onclick="showRedeemModal('@reward.Reward_Id', '@reward.Reward_Name', @reward.Points_Cost, @reward.Stock_Quantity, @Model.CurrentPoints)">
-                                Đổi quà
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            }
+    <div id="rewardsContainer">
+        <div class="text-center mt-5">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
         </div>
-    }
-    else
-    {
-        <div class="alert alert-info">Hiện tại không có quà nào.</div>
-    }
+    </div>
 </div>
 
 <!-- Modal đổi quà -->
@@ -99,6 +69,10 @@
 
 @section Scripts {
     <script>
+        const currentPoints = parseInt(document.getElementById('currentPoints').textContent);
+        const apiBaseUrl = document.getElementById('apiBaseUrl').textContent;
+        const apiKey = document.getElementById('apiKey').textContent;
+
         function showRedeemModal(rewardId, rewardName, pointsCost, stockQuantity, currentPoints) {
             document.getElementById('modalRewardId').value = rewardId;
             document.getElementById('modalRewardName').textContent = rewardName;
@@ -122,6 +96,27 @@
         }
 
         document.getElementById('quantity').addEventListener('input', updateTotalPoints);
+
+        function loadPage(page) {
+            fetch('/Reward/GetRewards?page=' + page)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Lỗi tải dữ liệu (' + response.status + ')');
+                    }
+                    return response.text();
+                })
+                .then(html => {
+                    document.getElementById('rewardsContainer').innerHTML = html;
+                })
+                .catch(error => {
+                    console.error('Error loading page:', error);
+                    document.getElementById('rewardsContainer').innerHTML = '<div class="alert alert-danger text-center">Không thể tải danh sách quà.<br>' + error.message + '</div>';
+                });
+        }
+
+        // Load trang đầu tiên khi vào trang
+        document.addEventListener('DOMContentLoaded', function() {
+            loadPage(1);
+        });
     </script>
 }
-

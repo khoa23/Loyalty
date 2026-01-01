@@ -1,7 +1,7 @@
 [
   {
     "ContainingType": "Program\u002B\u003C\u003Ec",
-    "Method": "\u003C\u003CMain\u003E$\u003Eb__0_2",
+    "Method": "\u003C\u003CMain\u003E$\u003Eb__0_3",
     "RelativePath": "",
     "HttpMethod": "GET",
     "IsController": false,
@@ -16,6 +16,27 @@
         "StatusCode": 200
       }
     ]
+  },
+  {
+    "ContainingType": "LoyaltyAPI.Controllers.LoyaltyController",
+    "Method": "GetAllRewardsForAdmin",
+    "RelativePath": "api/Loyalty/admin/rewards",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "page",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
   },
   {
     "ContainingType": "LoyaltyAPI.Controllers.LoyaltyController",
@@ -109,9 +130,34 @@
         "IsRequired": true
       },
       {
-        "Name": "request",
-        "Type": "LoyaltyAPI.Model.UpdateRewardRequest",
-        "IsRequired": true
+        "Name": "rewardName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "description",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "pointsCost",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "stockQuantity",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "isActive",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "imageFile",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
@@ -177,15 +223,20 @@
   {
     "ContainingType": "LoyaltyAPI.Controllers.UserController",
     "Method": "GetCustomer",
-    "RelativePath": "api/User/customer/{userId}",
+    "RelativePath": "api/User/customer/rewards",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "userId",
-        "Type": "System.Int64",
-        "IsRequired": true
+        "Name": "page",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []

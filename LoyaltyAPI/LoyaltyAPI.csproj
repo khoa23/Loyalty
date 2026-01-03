@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <Folder Include="Logs\" />
+    <Folder Include="Properties\PublishProfiles\" />
     <Folder Include="Uploads\rewards\" />
   </ItemGroup>
 

@@ -1,0 +1,60 @@
+2026-01-03 13:37:01.140 +07:00 [INF] Starting LoyaltyWebApp application
+2026-01-03 13:37:03.749 +07:00 [INF] LoyaltyWebApp is starting up
+2026-01-03 13:41:59.085 +07:00 [INF] Login API response status: "InternalServerError"
+2026-01-03 13:41:59.089 +07:00 [WRN] Login API failed with status "InternalServerError": Npgsql.PostgresException (0x80004005): 42501: user dev_user does not have USAGE privilege on schema loyalty_admin
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Dapper.SqlMapper.QueryRowAsync[T](IDbConnection cnn, Row row, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 489
+   at LoyaltyAPI.Controllers.UserController.Login(LoginRequest request) in D:\Code\Loyalty\LoyaltyAPI\Controllers\UserController.cs:line 37
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at LoyaltyAPI.Security.ApiKeyMiddleware.InvokeAsync(HttpContext context) in D:\Code\Loyalty\LoyaltyAPI\Security\ApiKeyMiddleware.cs:line 42
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+  Exception data:
+    Severity: ERROR
+    SqlState: 42501
+    MessageText: user dev_user does not have USAGE privilege on schema loyalty_admin
+    File: errors.go
+    Line: 527
+    Routine: NewInsufficientPrivilegeOnDescriptorError
+
+HEADERS
+=======
+Content-Type: application/json; charset=utf-8
+Host: localhost:44343
+Transfer-Encoding: chunked
+X-API-KEY: MySuperSecretApiKey123
+traceparent: 00-6795698a2e4457b1377a7a19caef7827-d3be35dfc927ab7a-00
+
+2026-01-03 13:44:01.909 +07:00 [INF] Login API response status: "OK"
+2026-01-03 13:44:01.909 +07:00 [INF] Login API response content: {"message":"Đăng nhập thành công","data":{"user_id":1138198698525917185,"username":"khachhang_a","user_role":"Customer","customer_id":1138198698634805249}}
+2026-01-03 13:44:01.934 +07:00 [INF] Login successful for user: khachhang_a
+2026-01-03 13:44:02.082 +07:00 [INF] GetCustomerRewardsWithPagination API response status: "OK"
+2026-01-03 13:44:02.082 +07:00 [INF] GetCustomerRewardsWithPagination API response content: {"message":"Lấy danh sách quà thành công","data":[{"reward_Id":"1138198698694901761","reward_Name":"Bình Giữ Nhiệt Cao Cấp","description":"Bình giữ nhiệt dung tích 500ml","points_Cost":2500,"stock_Quantity":49,"image_Url":null,"is_Active":null,"updated_At":"2026-01-03T13:17:57.019596"}],"page":1,"pageSize":1,"totalCount":3,"totalPages":3,"hasNext":true,"hasPrevious":false}
+2026-01-03 13:44:02.098 +07:00 [INF] GetCustomerRewardsWithPagination successful, page: 1, total: 3
+2026-01-03 13:44:05.074 +07:00 [INF] GetRedemptionHistory API response status: "OK"
+2026-01-03 13:44:05.074 +07:00 [INF] GetRedemptionHistory API response content: {"message":"Lấy lịch sử đổi quà thành công","data":[{"transaction_Id":"1138198698814242817","reward_Id":"1138198698694344705","reward_Name":"Voucher Điện Tử 100K","description":"Voucher sử dụng tại siêu thị","quantity_Redeemed":5,"points_Spent":5000,"redemption_Date":"2026-01-03T13:17:57.019596","transaction_Status":"Completed"}],"page":1,"pageSize":100,"totalCount":1,"hasMore":false}
+2026-01-03 13:44:05.082 +07:00 [INF] GetRedemptionHistory successful for customer 1138198698634805249, page 1, pageSize 100, count 1
+2026-01-03 13:44:23.385 +07:00 [INF] Login API response status: "OK"
+2026-01-03 13:44:23.385 +07:00 [INF] Login API response content: {"message":"Đăng nhập thành công","data":{"user_id":1138198698525720577,"username":"admin_loan","user_role":"Admin","customer_id":null}}
+2026-01-03 13:44:23.387 +07:00 [INF] Login successful for user: admin_loan
+2026-01-03 13:44:23.435 +07:00 [INF] GetRewardsWithPagination API response status: "OK"
+2026-01-03 13:44:23.435 +07:00 [INF] GetRewardsWithPagination API response content: {"message":"Lấy danh sách quà thành công","data":[{"reward_Id":"1138198698694344705","reward_Name":"Voucher Điện Tử 100K","description":"Voucher sử dụng tại siêu thị","points_Cost":1000,"stock_Quantity":95,"image_Url":null,"is_Active":true,"updated_At":"2026-01-03T13:17:57.019596"}],"page":1,"pageSize":1,"totalCount":3,"totalPages":3,"hasNext":true,"hasPrevious":false}
+2026-01-03 13:44:23.439 +07:00 [INF] GetRewardsWithPagination successful, page: 1, total: 3

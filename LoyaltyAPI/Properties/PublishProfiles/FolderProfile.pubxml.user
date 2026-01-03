@@ -2,8 +2,8 @@
 <!-- https://go.microsoft.com/fwlink/?LinkID=208121. -->
 <Project>
   <PropertyGroup>
-    <_PublishTargetUrl>D:\Code\LoyaltyAPI\Deploy\LoyaltyAPI</_PublishTargetUrl>
-    <History>True|2025-12-29T14:28:36.6542065Z||;</History>
+    <_PublishTargetUrl>D:\Code\Loyalty\Deploy\LoyaltyAPI</_PublishTargetUrl>
+    <History>True|2026-01-03T06:24:45.2233319Z||;</History>
     <LastFailureDetails />
   </PropertyGroup>
 </Project>

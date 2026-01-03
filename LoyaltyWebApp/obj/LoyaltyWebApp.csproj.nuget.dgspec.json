@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Code\\LoyaltyAPI\\LoyaltyWebApp\\LoyaltyWebApp.csproj": {}
+    "D:\\Code\\Loyalty\\LoyaltyWebApp\\LoyaltyWebApp.csproj": {}
   },
   "projects": {
-    "D:\\Code\\LoyaltyAPI\\LoyaltyWebApp\\LoyaltyWebApp.csproj": {
+    "D:\\Code\\Loyalty\\LoyaltyWebApp\\LoyaltyWebApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Code\\LoyaltyAPI\\LoyaltyWebApp\\LoyaltyWebApp.csproj",
+        "projectUniqueName": "D:\\Code\\Loyalty\\LoyaltyWebApp\\LoyaltyWebApp.csproj",
         "projectName": "LoyaltyWebApp",
-        "projectPath": "D:\\Code\\LoyaltyAPI\\LoyaltyWebApp\\LoyaltyWebApp.csproj",
+        "projectPath": "D:\\Code\\Loyalty\\LoyaltyWebApp\\LoyaltyWebApp.csproj",
         "packagesPath": "C:\\Users\\hodan\\.nuget\\packages\\",
-        "outputPath": "D:\\Code\\LoyaltyAPI\\LoyaltyWebApp\\obj\\",
+        "outputPath": "D:\\Code\\Loyalty\\LoyaltyWebApp\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -26,7 +26,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {

@@ -1,4 +1,4 @@
-CREATE DATABASE loyalty_db;
+--CREATE DATABASE loyalty_db;
 
 CREATE TABLE loyalty_admin.users (
     -- Dùng unique_rowid() của CockroachDB để tạo ID duy nhất, phân tán

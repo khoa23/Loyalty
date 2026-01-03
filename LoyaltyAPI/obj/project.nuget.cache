@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "WLEK+iXfKdM=",
+  "dgSpecHash": "giZpahdkENw=",
   "success": true,
-  "projectFilePath": "D:\\Code\\LoyaltyAPI\\LoyaltyAPI\\LoyaltyAPI.csproj",
+  "projectFilePath": "D:\\Code\\Loyalty\\LoyaltyAPI\\LoyaltyAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\hodan\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\hodan\\.nuget\\packages\\dapper\\2.1.66\\dapper.2.1.66.nupkg.sha512",
@@ -43,9 +43,9 @@
       "code": "NU1603",
       "level": "Warning",
       "message": "LoyaltyAPI depends on Swashbuckle.AspNetCore (>= 6.10.2) but Swashbuckle.AspNetCore 6.10.2 was not found. Swashbuckle.AspNetCore 7.0.0 was resolved instead.",
-      "projectPath": "D:\\Code\\LoyaltyAPI\\LoyaltyAPI\\LoyaltyAPI.csproj",
+      "projectPath": "D:\\Code\\Loyalty\\LoyaltyAPI\\LoyaltyAPI.csproj",
       "warningLevel": 1,
-      "filePath": "D:\\Code\\LoyaltyAPI\\LoyaltyAPI\\LoyaltyAPI.csproj",
+      "filePath": "D:\\Code\\Loyalty\\LoyaltyAPI\\LoyaltyAPI.csproj",
       "libraryId": "Swashbuckle.AspNetCore",
       "targetGraphs": [
         "net9.0"

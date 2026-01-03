@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Code\\LoyaltyAPI\\LoyaltyAPI\\LoyaltyAPI.csproj": {}
+    "D:\\Code\\Loyalty\\LoyaltyAPI\\LoyaltyAPI.csproj": {}
   },
   "projects": {
-    "D:\\Code\\LoyaltyAPI\\LoyaltyAPI\\LoyaltyAPI.csproj": {
+    "D:\\Code\\Loyalty\\LoyaltyAPI\\LoyaltyAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Code\\LoyaltyAPI\\LoyaltyAPI\\LoyaltyAPI.csproj",
+        "projectUniqueName": "D:\\Code\\Loyalty\\LoyaltyAPI\\LoyaltyAPI.csproj",
         "projectName": "LoyaltyAPI",
-        "projectPath": "D:\\Code\\LoyaltyAPI\\LoyaltyAPI\\LoyaltyAPI.csproj",
+        "projectPath": "D:\\Code\\Loyalty\\LoyaltyAPI\\LoyaltyAPI.csproj",
         "packagesPath": "C:\\Users\\hodan\\.nuget\\packages\\",
-        "outputPath": "D:\\Code\\LoyaltyAPI\\LoyaltyAPI\\obj\\",
+        "outputPath": "D:\\Code\\Loyalty\\LoyaltyAPI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -26,7 +26,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {

@@ -36,7 +36,7 @@ $$ LANGUAGE SQL;
 
 
 -- Xóa function cũ (nếu có) với signature cũ (_limit, _offset)
-DROP FUNCTION IF EXISTS loyalty_admin.get_available_rewards(INT, INT);
+--DROP FUNCTION IF EXISTS loyalty_admin.get_available_rewards(INT, INT);
 
 -- Tạo lại function với signature mới (_page, _page_size)
 CREATE OR REPLACE FUNCTION loyalty_admin.get_available_rewards(_page INT, _page_size INT)

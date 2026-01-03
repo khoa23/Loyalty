@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "XTcPb2rpFhQ=",
+  "dgSpecHash": "r1xXNXQA2JI=",
   "success": true,
-  "projectFilePath": "D:\\Code\\LoyaltyAPI\\LoyaltyWebApp\\LoyaltyWebApp.csproj",
+  "projectFilePath": "D:\\Code\\Loyalty\\LoyaltyWebApp\\LoyaltyWebApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\hodan\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\8.0.0\\microsoft.aspnetcore.authentication.jwtbearer.8.0.0.nupkg.sha512",
     "C:\\Users\\hodan\\.nuget\\packages\\microsoft.extensions.configuration\\10.0.0\\microsoft.extensions.configuration.10.0.0.nupkg.sha512",

@@ -1,6 +1,8 @@
 ﻿using Dapper;
+using LoyaltyAPI.Helpers;
 using LoyaltyAPI.Model;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using Npgsql;
 using System.Data;
 
@@ -12,18 +14,20 @@ namespace LoyaltyAPI.Controllers
     {
         private readonly string _connectionString;
         private readonly IConfiguration _configuration;
+        private readonly ILogger<LoyaltyController> _logger;
 
-        public LoyaltyController(IConfiguration configuration)
+        public LoyaltyController(IConfiguration configuration, ILogger<LoyaltyController> logger)
         {
             _connectionString = configuration.GetConnectionString("CockroachDb");
             _configuration = configuration;
+            _logger = logger;
         }
 
         // 1. API Lấy danh sách quà có sẵn cho customer với phân trang đầy đủ
         [HttpGet("rewards")]
         public async Task<IActionResult> GetAvailableRewards([FromQuery] int page = 1, [FromQuery] int pageSize = 10)
         {
-            using IDbConnection db = new NpgsqlConnection(_connectionString);
+            using IDbConnection db = DatabaseConnectionHelper.CreateConnection(_connectionString, _logger);
 
             // Validate parameters
             if (page < 1) page = 1;
@@ -59,7 +63,7 @@ namespace LoyaltyAPI.Controllers
         [HttpGet("admin/rewards")]
         public async Task<IActionResult> GetAllRewardsForAdmin([FromQuery] int page = 1, [FromQuery] int pageSize = 10)
         {
-            using IDbConnection db = new NpgsqlConnection(_connectionString);
+            using IDbConnection db = DatabaseConnectionHelper.CreateConnection(_connectionString, _logger);
 
             // Validate parameters
             if (page < 1) page = 1;

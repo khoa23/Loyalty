@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using LoyaltyAPI.Helpers;
 using LoyaltyAPI.Model;
 using LoyaltyAPI.Security;
 using Microsoft.AspNetCore.Cors;
@@ -31,7 +32,7 @@ namespace LoyaltyAPI.Controllers
                 return BadRequest("Tên đăng nhập và mật khẩu không được để trống");
             }
 
-            using IDbConnection db = new NpgsqlConnection(_connectionString);
+            using IDbConnection db = DatabaseConnectionHelper.CreateConnection(_connectionString, _logger);
 
             // Lấy thông tin user từ database (bao gồm password_hash)
             var user = await db.QueryFirstOrDefaultAsync<dynamic>(

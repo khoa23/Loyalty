@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using LoyaltyAPI.Helpers;
 using LoyaltyAPI.Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -36,7 +37,7 @@ namespace LoyaltyAPI.Controllers
 
             _logger.LogInformation("Redeem reward request: CustomerId={CustomerId}, RewardId={RewardId}, Quantity={Quantity}", request.CustomerId, request.RewardId, request.Quantity);
 
-            using IDbConnection db = new NpgsqlConnection(_connectionString);
+            using IDbConnection db = DatabaseConnectionHelper.CreateConnection(_connectionString, _logger);
 
             try
             {
@@ -91,7 +92,7 @@ namespace LoyaltyAPI.Controllers
             if (pageSize <= 0) pageSize = 10;
             if (pageSize > 100) pageSize = 100;
 
-            using IDbConnection db = new NpgsqlConnection(_connectionString);
+            using IDbConnection db = DatabaseConnectionHelper.CreateConnection(_connectionString, _logger);
 
             try
             {

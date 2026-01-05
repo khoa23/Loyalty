@@ -239,6 +239,42 @@ namespace LoyaltyAPI.Controllers
             return $"CIF{nextNumber:D6}";
         }
 
+        // API Lấy thông tin khách hàng theo userId
+        [HttpGet("customer/{userId}")]
+        [EnableCors("AllowAll")]
+        public async Task<IActionResult> GetCustomerInfo(long userId)
+        {
+            try
+            {
+                using IDbConnection db = DatabaseConnectionHelper.CreateConnection(_connectionString, _logger);
+
+                var customer = await db.QueryFirstOrDefaultAsync<dynamic>(
+                    @"SELECT 
+                        c.customer_id,
+                        c.current_points
+                    FROM loyalty_admin.customers c
+                    WHERE c.user_id = @userId",
+                    new { userId });
+
+                if (customer == null)
+                {
+                    _logger.LogWarning("Customer not found for userId {UserId}", userId);
+                    return NotFound(new { message = "Khách hàng không tồn tại" });
+                }
+
+                return Ok(new
+                {
+                    Customer_Id = customer.customer_id,
+                    Current_Points = customer.current_points
+                });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error getting customer info for userId {UserId}", userId);
+                return StatusCode(500, new { message = "Lỗi khi lấy thông tin khách hàng", error = ex.Message });
+            }
+        }
+
         // API Lấy danh sách quà có sẵn cho customer với phân trang
         [HttpGet("customer/rewards")]
         [EnableCors("AllowAll")]

@@ -7,9 +7,14 @@
 <div class="container-fluid mt-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h2>Quản lý quà</h2>
-        <a href="/Admin/Create" class="btn btn-primary">
-            <i class="bi bi-plus-circle"></i> Thêm quà mới
-        </a>
+        <div>
+            <a href="/Admin/Customers" class="btn btn-info">
+                <i class="bi bi-people"></i> Quản lý khách hàng
+            </a>
+            <a href="/Admin/Create" class="btn btn-primary ms-2">
+                <i class="bi bi-plus-circle"></i> Thêm quà mới
+            </a>
+        </div>
     </div>
 
     @if (!string.IsNullOrEmpty(Model.ErrorMessage))

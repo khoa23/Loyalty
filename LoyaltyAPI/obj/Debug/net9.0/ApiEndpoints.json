@@ -18,6 +18,48 @@
     ]
   },
   {
+    "ContainingType": "LoyaltyAPI.Controllers.CustomerController",
+    "Method": "GetCustomer",
+    "RelativePath": "api/Customer/{customerId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "customerId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LoyaltyAPI.Controllers.CustomerController",
+    "Method": "AddPoints",
+    "RelativePath": "api/Customer/add-points",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "LoyaltyAPI.Model.AddPointsRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LoyaltyAPI.Controllers.CustomerController",
+    "Method": "ListCustomers",
+    "RelativePath": "api/Customer/list",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "LoyaltyAPI.Controllers.LoyaltyController",
     "Method": "GetAllRewardsForAdmin",
     "RelativePath": "api/Loyalty/admin/rewards",
@@ -215,6 +257,22 @@
       {
         "Name": "request",
         "Type": "LoyaltyAPI.Model.RedeemRewardRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LoyaltyAPI.Controllers.UserController",
+    "Method": "GetCustomerInfo",
+    "RelativePath": "api/User/customer/{userId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int64",
         "IsRequired": true
       }
     ],

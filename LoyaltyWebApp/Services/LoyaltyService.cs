@@ -36,10 +36,40 @@ namespace LoyaltyWebApp.Services
                 else
                 {
                     var errorContent = await response.Content.ReadAsStringAsync();
-                    var errorResult = JsonSerializer.Deserialize<JsonElement>(errorContent);
-                    return errorResult.TryGetProperty("Message", out var msg) 
-                        ? msg.GetString() 
-                        : "Đổi quà thất bại";
+
+                    // Try to parse JSON error first; if not JSON, use raw text
+                    string errorMessage = null;
+                    try
+                    {
+                        var errorResult = JsonSerializer.Deserialize<JsonElement>(errorContent);
+                        if (errorResult.ValueKind == JsonValueKind.Object)
+                        {
+                            if (errorResult.TryGetProperty("Message", out var msg))
+                                errorMessage = msg.GetString();
+                            else if (errorResult.TryGetProperty("message", out var msg2))
+                                errorMessage = msg2.GetString();
+                            else if (errorResult.TryGetProperty("error", out var err))
+                                errorMessage = err.GetString();
+                        }
+                    }
+                    catch
+                    {
+                        // not JSON
+                    }
+
+                    if (string.IsNullOrEmpty(errorMessage))
+                    {
+                        errorMessage = (errorContent ?? string.Empty).Trim();
+                    }
+
+                    // Map common insufficient-points phrases to a friendly message
+                    var lower = (errorMessage ?? string.Empty).ToLowerInvariant();
+                    if (lower.Contains("not enough") || lower.Contains("insufficient") || lower.Contains("không đủ") || lower.Contains("khong du") )
+                    {
+                        return "Không đủ điểm để đổi quà";
+                    }
+
+                    return string.IsNullOrEmpty(errorMessage) ? "Đổi quà thất bại" : errorMessage;
                 }
             }
             catch (Exception ex)

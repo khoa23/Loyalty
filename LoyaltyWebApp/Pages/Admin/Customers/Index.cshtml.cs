@@ -1,20 +1,19 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using LoyaltyWebApp.Models;
-using System.Net.Http;
-using System.Text.Json;
+using LoyaltyWebApp.Services;
 
 namespace LoyaltyWebApp.Pages.Admin.Customers
 {
     public class IndexModel : PageModel
     {
-        private readonly IConfiguration _configuration;
-        private readonly HttpClient _httpClient;
+        private readonly ICustomerService _customerService;
+        private readonly ILogger<IndexModel> _logger;
 
-        public IndexModel(IConfiguration configuration, HttpClient httpClient)
+        public IndexModel(ICustomerService customerService, ILogger<IndexModel> logger)
         {
-            _configuration = configuration;
-            _httpClient = httpClient;
+            _customerService = customerService;
+            _logger = logger;
         }
 
         public List<CustomerModel>? Customers { get; set; }
@@ -38,25 +37,12 @@ namespace LoyaltyWebApp.Pages.Admin.Customers
 
         private async Task LoadCustomers()
         {
-            try
+            Customers = await _customerService.GetCustomersAsync();
+            
+            if (Customers == null)
             {
-                var apiUrl = _configuration["ApiSettings:BaseUrl"] ?? "http://localhost:5000";
-                var response = await _httpClient.GetAsync($"{apiUrl}/api/customer/list");
-
-                if (response.IsSuccessStatusCode)
-                {
-                    var jsonContent = await response.Content.ReadAsStringAsync();
-                    var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
-                    Customers = JsonSerializer.Deserialize<List<CustomerModel>>(jsonContent, options);
-                }
-                else
-                {
-                    ErrorMessage = "Không thể tải danh sách khách hàng từ máy chủ";
-                }
-            }
-            catch (Exception ex)
-            {
-                ErrorMessage = $"Lỗi khi tải danh sách khách hàng: {ex.Message}";
+                ErrorMessage = "Không thể tải danh sách khách hàng từ máy chủ";
+                Customers = new List<CustomerModel>();
             }
         }
     }

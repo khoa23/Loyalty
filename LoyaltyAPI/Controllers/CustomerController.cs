@@ -32,14 +32,14 @@ namespace LoyaltyAPI.Controllers
 
                 var customers = await db.QueryAsync<CustomerResponse>(
                     @"SELECT 
-                        c.customer_id,
-                        c.user_id,
-                        c.cif_number,
-                        c.full_name,
-                        u.username,
-                        c.current_points,
-                        c.phone_number,
-                        c.updated_at
+                        c.customer_id AS CustomerId,
+                        c.user_id AS UserId,
+                        c.cif_number AS CifNumber,
+                        c.full_name AS FullName,
+                        u.username AS Username,
+                        c.current_points AS CurrentPoints,
+                        c.phone_number AS PhoneNumber,
+                        c.updated_at AS UpdatedAt
                     FROM loyalty_admin.customers c
                     INNER JOIN loyalty_admin.users u ON c.user_id = u.user_id
                     ORDER BY c.updated_at DESC");

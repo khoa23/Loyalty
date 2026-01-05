@@ -2,8 +2,8 @@ namespace LoyaltyWebApp.Models
 {
     public class CustomerModel
     {
-        public int CustomerId { get; set; }
-        public int UserId { get; set; }
+        public long CustomerId { get; set; }
+        public long UserId { get; set; }
         public string CifNumber { get; set; }
         public string FullName { get; set; }
         public string Username { get; set; }

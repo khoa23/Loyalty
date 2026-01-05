@@ -58,8 +58,8 @@
                                 </td>
                                 <td>@customer.UpdatedAt.ToString("dd/MM/yyyy HH:mm")</td>
                                 <td>
-                                    <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#addPointsModal"
-                                            onclick="setCustomerForPoints(@customer.CustomerId, '@customer.FullName', @customer.CurrentPoints)">
+                                        <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#addPointsModal"
+                                            onclick="setCustomerForPoints('@customer.CustomerId', '@customer.FullName', @customer.CurrentPoints)">
                                         <i class="fas fa-plus"></i> Cộng điểm
                                     </button>
                                 </td>
@@ -118,10 +118,11 @@
 
 @section Scripts {
     <script>
-        let selectedCustomerId = 0;
+        let selectedCustomerId = "";
 
         function setCustomerForPoints(customerId, fullName, currentPoints) {
-            selectedCustomerId = customerId;
+            // Preserve large 64-bit id as string to avoid JS number precision loss
+            selectedCustomerId = customerId.toString();
             document.getElementById('customerName').value = fullName;
             document.getElementById('currentBalance').value = currentPoints.toString();
             document.getElementById('pointsToAdd').value = '';
@@ -140,13 +141,13 @@
             }
 
             try {
-                const response = await fetch('/api/customer/add-points', {
+                const response = await fetch('/Customer/AddPoints', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
-                        customerId: selectedCustomerId,
+                        customerId: selectedCustomerId, // string preserves exact id
                         points: pointsToAdd,
                         reason: reason
                     })

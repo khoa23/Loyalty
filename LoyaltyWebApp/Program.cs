@@ -48,6 +48,7 @@ builder.Services.AddSession(options =>
 builder.Services.AddScoped<LoyaltyWebApp.Services.IUserService, LoyaltyWebApp.Services.UserService>();
 builder.Services.AddScoped<LoyaltyWebApp.Services.IRewardService, LoyaltyWebApp.Services.RewardService>();
 builder.Services.AddScoped<LoyaltyWebApp.Services.ILoyaltyService, LoyaltyWebApp.Services.LoyaltyService>();
+builder.Services.AddScoped<LoyaltyWebApp.Services.ICustomerService, LoyaltyWebApp.Services.CustomerService>();
 
     var app = builder.Build();
 

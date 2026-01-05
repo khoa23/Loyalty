@@ -533,7 +533,7 @@
         "properties": {
           "customerId": {
             "type": "integer",
-            "format": "int32"
+            "format": "int64"
           },
           "points": {
             "type": "integer",

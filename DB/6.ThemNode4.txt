@@ -1,0 +1,1 @@
+docker run -d --name=roach4 --hostname=roach4 --network=roachnet -p 26261:26261 -p 8084:8084 -v "roach4:/cockroach/cockroach-data" cockroachdb/cockroach:v25.4.0 start --insecure --join=roach1:26357,roach2:26357,roach3:26357 --listen-addr=roach4:26357 --sql-addr=roach4:26261 --http-addr=roach4:8084 --advertise-addr=roach4:26357

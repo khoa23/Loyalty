@@ -8,7 +8,7 @@
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h2>Quản lý quà</h2>
         <div>
-            <a href="/Admin/Create" class="btn btn-primary ms-2">
+            <a href="./Create" class="btn btn-primary ms-2">
                 <i class="bi bi-plus-circle"></i> Thêm quà mới
             </a>
         </div>
@@ -36,6 +36,21 @@
 
 @section Scripts {
     <script>
+        // Get base path from current URL to support subdirectories (e.g., /loyaltyWebApp/)
+        function getBasePath() {
+            const url = new URL(window.location.href);
+            const pathname = url.pathname;
+            
+            // If path contains /Admin, extract base path up to that point
+            const adminIndex = pathname.indexOf('/Admin');
+            if (adminIndex > 0) {
+                return pathname.substring(0, adminIndex);
+            }
+            return '';
+        }
+
+        const basePath = getBasePath();
+
         function deleteReward(rewardId, rewardName) {
             if (confirm(`Bạn có chắc chắn muốn xóa quà "${rewardName}"?`)) {
                 document.getElementById('deleteRewardId').value = rewardId;
@@ -44,7 +59,8 @@
         }
 
         function loadPage(page) {
-            fetch('/Reward/GetAdminRewards?page=' + page)
+            const apiUrl = basePath + '/Reward/GetAdminRewards?page=' + page;
+            fetch(apiUrl)
                 .then(async response => {
                     if (!response.ok) {
                         const text = await response.text();

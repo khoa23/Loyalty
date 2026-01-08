@@ -97,8 +97,24 @@
 
         document.getElementById('quantity').addEventListener('input', updateTotalPoints);
 
+        // Get base path from current URL to support subdirectories (e.g., /loyaltyWebApp/)
+        function getBasePath() {
+            const url = new URL(window.location.href);
+            const pathname = url.pathname;
+            
+            // If path contains /Customer, extract base path up to that point
+            const customerIndex = pathname.indexOf('/Customer');
+            if (customerIndex > 0) {
+                return pathname.substring(0, customerIndex);
+            }
+            return '';
+        }
+
+        const basePath = getBasePath();
+
         function loadPage(page) {
-            fetch('/Reward/GetRewards?page=' + page)
+            const apiUrl = basePath + '/Reward/GetRewards?page=' + page;
+            fetch(apiUrl)
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Lỗi tải dữ liệu (' + response.status + ')');

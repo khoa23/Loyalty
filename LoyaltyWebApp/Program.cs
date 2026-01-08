@@ -25,15 +25,26 @@ try
 
     builder.Services.AddRazorPages();
     builder.Services.AddControllers();
-    builder.Services.AddHttpClient("LoyaltyAPI", client =>
-{
-    client.BaseAddress = new Uri(builder.Configuration.GetValue<string>("ApiBaseUrl") ?? "https://localhost:5001/");
-    var apiKey = builder.Configuration.GetValue<string>("ApiKey");
-    if (!string.IsNullOrEmpty(apiKey))
+    
+    // Cấu hình HttpClient để bypass SSL validation (cho development/testing)
+    // CẢNH BÁO: Chỉ sử dụng cho development, không dùng cho production!
+    var httpClientHandler = new HttpClientHandler();
+    if (!builder.Environment.IsProduction())
     {
-        client.DefaultRequestHeaders.Add("X-API-KEY", apiKey);
+        httpClientHandler.ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true;
     }
-});
+    
+    builder.Services.AddHttpClient("LoyaltyAPI", client =>
+    {
+        client.BaseAddress = new Uri(builder.Configuration.GetValue<string>("ApiBaseUrl") ?? "https://localhost:5001/");
+        var apiKey = builder.Configuration.GetValue<string>("ApiKey");
+        if (!string.IsNullOrEmpty(apiKey))
+        {
+            client.DefaultRequestHeaders.Add("X-API-KEY", apiKey);
+        }
+    })
+    .ConfigureHttpClient((sp, client) => { })
+    .ConfigurePrimaryHttpMessageHandler(() => httpClientHandler);
 
 // Add session management
 builder.Services.AddDistributedMemoryCache();
@@ -55,6 +66,13 @@ builder.Services.AddScoped<LoyaltyWebApp.Services.ICustomerService, LoyaltyWebAp
     if (!app.Environment.IsProduction())
     {
         app.UseDeveloperExceptionPage();
+    }
+
+    // Cấu hình base path cho IIS deployment
+    var pathBase = builder.Configuration.GetValue<string>("ASPNETCORE_APPL_PATH") ?? "";
+    if (!string.IsNullOrEmpty(pathBase))
+    {
+        app.UsePathBase(pathBase);
     }
 
     app.UseStaticFiles();

@@ -14,7 +14,7 @@ namespace LoyaltyWebApp.Controller
         public CustomerController(IConfiguration configuration, IHttpClientFactory httpClientFactory, ILogger<CustomerController> logger)
         {
             _configuration = configuration;
-            _httpClient = httpClientFactory.CreateClient();
+            _httpClient = httpClientFactory.CreateClient("LoyaltyAPI");
             _logger = logger;
         }
 

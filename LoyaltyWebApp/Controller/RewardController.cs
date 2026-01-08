@@ -19,7 +19,7 @@ namespace LoyaltyWebApp.Controller
         public RewardController(IConfiguration configuration, IHttpClientFactory httpClientFactory, ILogger<RewardController> logger)
         {
             _configuration = configuration;
-            _httpClient = httpClientFactory.CreateClient();
+            _httpClient = httpClientFactory.CreateClient("LoyaltyAPI");
             _logger = logger;
         }
 

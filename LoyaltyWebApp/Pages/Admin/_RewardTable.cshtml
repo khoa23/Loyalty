@@ -50,7 +50,7 @@
                             }
                         </td>
                         <td>
-                            <a href="/Admin/Edit?id=@reward.Reward_Id" class="btn btn-sm btn-warning">Sửa</a>
+                            <a asp-page="/Admin/Edit" asp-route-id="@reward.Reward_Id" class="btn btn-sm btn-warning">Sửa</a>
                             <button type="button" class="btn btn-sm btn-danger" onclick="deleteReward('@reward.Reward_Id', '@reward.Reward_Name')">Xóa</button>
                         </td>
                     </tr>
@@ -115,5 +115,5 @@
 }
 else
 {
-    <div class="alert alert-info">Chưa có quà nào. <a href="/Admin/Create">Thêm quà mới</a></div>
+    <div class="alert alert-info">Chưa có quà nào. <a asp-page="/Admin/Create">Thêm quà mới</a></div>
 }

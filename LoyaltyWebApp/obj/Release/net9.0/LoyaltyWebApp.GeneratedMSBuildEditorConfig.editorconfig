@@ -9,81 +9,85 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = LoyaltyWebApp
 build_property.RootNamespace = LoyaltyWebApp
-build_property.ProjectDir = D:\Code\Loyalty\LoyaltyWebApp\
+build_property.ProjectDir = D:\Code\LoyaltyAPI\LoyaltyWebApp\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 9.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = D:\Code\Loyalty\LoyaltyWebApp
+build_property.MSBuildProjectDirectory = D:\Code\LoyaltyAPI\LoyaltyWebApp
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 9.0
 build_property.EnableCodeStyleSeverity = 
 
-[D:/Code/Loyalty/LoyaltyWebApp/Pages/Admin/Create.cshtml]
+[D:/Code/LoyaltyAPI/LoyaltyWebApp/Pages/Admin/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Code/Loyalty/LoyaltyWebApp/Pages/Admin/Edit.cshtml]
+[D:/Code/LoyaltyAPI/LoyaltyWebApp/Pages/Admin/Customers/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQ3VzdG9tZXJzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Code/LoyaltyAPI/LoyaltyWebApp/Pages/Admin/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Code/Loyalty/LoyaltyWebApp/Pages/Admin/Index.cshtml]
+[D:/Code/LoyaltyAPI/LoyaltyWebApp/Pages/Admin/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Code/Loyalty/LoyaltyWebApp/Pages/Admin/_RewardTable.cshtml]
+[D:/Code/LoyaltyAPI/LoyaltyWebApp/Pages/Admin/_RewardTable.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cX1Jld2FyZFRhYmxlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Code/Loyalty/LoyaltyWebApp/Pages/Customer/History.cshtml]
+[D:/Code/LoyaltyAPI/LoyaltyWebApp/Pages/Customer/History.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VzdG9tZXJcSGlzdG9yeS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Code/Loyalty/LoyaltyWebApp/Pages/Customer/Index.cshtml]
+[D:/Code/LoyaltyAPI/LoyaltyWebApp/Pages/Customer/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VzdG9tZXJcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Code/Loyalty/LoyaltyWebApp/Pages/Customer/_RewardList.cshtml]
+[D:/Code/LoyaltyAPI/LoyaltyWebApp/Pages/Customer/_RewardList.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VzdG9tZXJcX1Jld2FyZExpc3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Code/Loyalty/LoyaltyWebApp/Pages/Error.cshtml]
+[D:/Code/LoyaltyAPI/LoyaltyWebApp/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Code/Loyalty/LoyaltyWebApp/Pages/Index.cshtml]
+[D:/Code/LoyaltyAPI/LoyaltyWebApp/Pages/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Code/Loyalty/LoyaltyWebApp/Pages/Login.cshtml]
+[D:/Code/LoyaltyAPI/LoyaltyWebApp/Pages/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Code/Loyalty/LoyaltyWebApp/Pages/Logout.cshtml]
+[D:/Code/LoyaltyAPI/LoyaltyWebApp/Pages/Logout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9nb3V0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Code/Loyalty/LoyaltyWebApp/Pages/Privacy.cshtml]
+[D:/Code/LoyaltyAPI/LoyaltyWebApp/Pages/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJpdmFjeS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Code/Loyalty/LoyaltyWebApp/Pages/Register.cshtml]
+[D:/Code/LoyaltyAPI/LoyaltyWebApp/Pages/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVnaXN0ZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Code/Loyalty/LoyaltyWebApp/Pages/Shared/_ValidationScriptsPartial.cshtml]
+[D:/Code/LoyaltyAPI/LoyaltyWebApp/Pages/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Code/Loyalty/LoyaltyWebApp/Pages/_ViewImports.cshtml]
+[D:/Code/LoyaltyAPI/LoyaltyWebApp/Pages/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Code/Loyalty/LoyaltyWebApp/Pages/_ViewStart.cshtml]
+[D:/Code/LoyaltyAPI/LoyaltyWebApp/Pages/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Code/Loyalty/LoyaltyWebApp/Pages/Shared/_Layout.cshtml]
+[D:/Code/LoyaltyAPI/LoyaltyWebApp/Pages/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-ynfflb72ep

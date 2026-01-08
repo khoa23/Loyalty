@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LoyaltyWebApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6f3a0cf82caf0aeeb51f53d08b566cfde7987cc6")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bdd0392d73add5264c0ae62852baba7ced5620ff")]
 [assembly: System.Reflection.AssemblyProductAttribute("LoyaltyWebApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LoyaltyWebApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

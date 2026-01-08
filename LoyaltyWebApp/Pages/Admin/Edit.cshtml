@@ -58,14 +58,14 @@
             
             <div class="d-flex gap-2">
                 <button type="submit" class="btn btn-primary">Cập nhật</button>
-                <a href="/Admin" class="btn btn-secondary">Hủy</a>
+                <a asp-page="/Admin" class="btn btn-secondary">Hủy</a>
             </div>
         </form>
     }
     else
     {
         <div class="alert alert-warning">Không tìm thấy quà</div>
-        <a href="/Admin" class="btn btn-secondary">Quay lại</a>
+        <a asp-page="/Admin" class="btn btn-secondary">Quay lại</a>
     }
 </div>
 

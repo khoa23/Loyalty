@@ -87,3 +87,14 @@ D:\Code\Loyalty\LoyaltyAPI\obj\Release\net9.0\refint\LoyaltyAPI.dll
 D:\Code\Loyalty\LoyaltyAPI\obj\Release\net9.0\LoyaltyAPI.pdb
 D:\Code\Loyalty\LoyaltyAPI\obj\Release\net9.0\LoyaltyAPI.genruntimeconfig.cache
 D:\Code\Loyalty\LoyaltyAPI\obj\Release\net9.0\ref\LoyaltyAPI.dll
+D:\Code\LoyaltyAPI\LoyaltyAPI\bin\Release\net9.0\BCrypt.Net-Next.dll
+D:\Code\LoyaltyAPI\LoyaltyAPI\bin\Release\net9.0\Microsoft.Extensions.DependencyModel.dll
+D:\Code\LoyaltyAPI\LoyaltyAPI\bin\Release\net9.0\Serilog.dll
+D:\Code\LoyaltyAPI\LoyaltyAPI\bin\Release\net9.0\Serilog.AspNetCore.dll
+D:\Code\LoyaltyAPI\LoyaltyAPI\bin\Release\net9.0\Serilog.Extensions.Hosting.dll
+D:\Code\LoyaltyAPI\LoyaltyAPI\bin\Release\net9.0\Serilog.Extensions.Logging.dll
+D:\Code\LoyaltyAPI\LoyaltyAPI\bin\Release\net9.0\Serilog.Formatting.Compact.dll
+D:\Code\LoyaltyAPI\LoyaltyAPI\bin\Release\net9.0\Serilog.Settings.Configuration.dll
+D:\Code\LoyaltyAPI\LoyaltyAPI\bin\Release\net9.0\Serilog.Sinks.Console.dll
+D:\Code\LoyaltyAPI\LoyaltyAPI\bin\Release\net9.0\Serilog.Sinks.Debug.dll
+D:\Code\LoyaltyAPI\LoyaltyAPI\bin\Release\net9.0\Serilog.Sinks.File.dll

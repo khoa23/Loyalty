@@ -14,5 +14,6 @@
 
   <ItemGroup>
     <Folder Include="Logs\" />
+    <Folder Include="Properties\PublishProfiles\" />
   </ItemGroup>
 </Project>

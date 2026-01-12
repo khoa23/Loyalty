@@ -539,12 +539,9 @@ namespace LoyaltyAPI.Controllers
                 if (existingReward == null)
                     return NotFound($"Không tìm thấy quà với ID: {id}");
 
-                // Soft delete - set is_active = false thay vì xóa hẳn
                 var rowsAffected = await db.ExecuteAsync(
-                    @"UPDATE loyalty_admin.rewards
-                      SET is_active = false,
-                          updated_at = now()
-                      WHERE reward_id = @id::INT",
+                    @"DELETE FROM loyalty_admin.rewards
+                     WHERE reward_id = @id", // Thường không cần ::INT nếu biến C# đã đúng kiểu
                     new { id = id });
 
                 if (rowsAffected == 0)

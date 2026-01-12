@@ -72,6 +72,18 @@
         }
       }
     },
+    "/api/Customer/top-redeemers": {
+      "get": {
+        "tags": [
+          "Customer"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Loyalty/rewards": {
       "get": {
         "tags": [

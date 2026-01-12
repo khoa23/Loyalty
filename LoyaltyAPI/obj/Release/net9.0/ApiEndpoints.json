@@ -60,6 +60,16 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "LoyaltyAPI.Controllers.CustomerController",
+    "Method": "GetTopRedeemers",
+    "RelativePath": "api/Customer/top-redeemers",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "LoyaltyAPI.Controllers.LoyaltyController",
     "Method": "GetAllRewardsForAdmin",
     "RelativePath": "api/Loyalty/admin/rewards",

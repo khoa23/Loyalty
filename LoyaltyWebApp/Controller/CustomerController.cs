@@ -166,5 +166,65 @@ namespace LoyaltyWebApp.Controller
                 });
             }
         }
+
+        [HttpGet("GetTopRedeemers")]
+        public async Task<IActionResult> GetTopRedeemers()
+        {
+            try
+            {
+                var apiBaseUrl = _configuration.GetValue<string>("ApiBaseUrl") ?? "https://localhost:44343/";
+                var apiKey = _configuration.GetValue<string>("ApiKey");
+
+                if (!apiBaseUrl.EndsWith("/")) apiBaseUrl += "/";
+
+                var requestUrl = $"{apiBaseUrl}api/customer/top-redeemers";
+                var request = new HttpRequestMessage(HttpMethod.Get, requestUrl);
+
+                if (!string.IsNullOrEmpty(apiKey))
+                {
+                    request.Headers.Add("X-API-KEY", apiKey);
+                }
+
+                _logger.LogInformation("📡 Calling API to fetch top redeemers from: {RequestUrl}", requestUrl);
+
+                var response = await _httpClient.SendAsync(request);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var content = await response.Content.ReadAsStringAsync();
+                    var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+                    var stats = JsonSerializer.Deserialize<List<CustomerStatisticViewModel>>(content, options);
+
+                    _logger.LogInformation("✓ Successfully fetched top 5 redeemers from API");
+                    
+                    return Ok(new
+                    {
+                        Success = true,
+                        Data = stats,
+                        Message = "Lấy danh sách thống kê thành công"
+                    });
+                }
+
+                _logger.LogWarning("✗ API returned status code {StatusCode}", response.StatusCode);
+                var errorContent = await response.Content.ReadAsStringAsync();
+                
+                return BadRequest(new
+                {
+                    Success = false,
+                    Message = $"Lỗi API: {response.StatusCode}",
+                    Details = errorContent
+                });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "✗ Error loading top redeemers from API");
+                return StatusCode(500, new
+                {
+                    Success = false,
+                    Message = "Lỗi khi tải danh sách thống kê",
+                    Error = ex.Message
+                });
+            }
+        }
     }
 }

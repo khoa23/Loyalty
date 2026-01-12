@@ -6,6 +6,7 @@ namespace LoyaltyWebApp.Services
     public interface ICustomerService
     {
         Task<List<CustomerModel>?> GetCustomersAsync();
+        Task<List<CustomerStatisticViewModel>?> GetTopRedeemersAsync();
     }
 
     public class CustomerService : ICustomerService
@@ -68,6 +69,55 @@ namespace LoyaltyWebApp.Services
             catch (Exception ex)
             {
                 _logger.LogError(ex, "✗ Error loading customers");
+                return null;
+            }
+        }
+
+        public async Task<List<CustomerStatisticViewModel>?> GetTopRedeemersAsync()
+        {
+            try
+            {
+                var webAppUrl = _configuration["WebAppUrl"];
+                if (string.IsNullOrEmpty(webAppUrl))
+                {
+                    _logger.LogError("❌ WebAppUrl is not configured in appsettings.json");
+                    return null;
+                }
+
+                if (!webAppUrl.EndsWith("/")) webAppUrl += "/";
+
+                var requestUrl = $"{webAppUrl}Customer/GetTopRedeemers";
+
+                _logger.LogInformation("📡 Calling GetTopRedeemers endpoint from: {RequestUrl}", requestUrl);
+
+                var response = await _httpClient.GetAsync(requestUrl);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var jsonContent = await response.Content.ReadAsStringAsync();
+                    var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+
+                    using var document = JsonDocument.Parse(jsonContent);
+                    var root = document.RootElement;
+
+                    if (root.TryGetProperty("data", out var dataElement))
+                    {
+                        var stats = JsonSerializer.Deserialize<List<CustomerStatisticViewModel>>(dataElement.GetRawText(), options);
+                        _logger.LogInformation("✓ Successfully fetched top 5 redeemers");
+                        return stats;
+                    }
+
+                    return null;
+                }
+                else
+                {
+                    _logger.LogWarning("✗ API returned status code {StatusCode}", response.StatusCode);
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "✗ Error loading top redeemers");
                 return null;
             }
         }

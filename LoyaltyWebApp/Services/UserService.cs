@@ -73,10 +73,27 @@ namespace LoyaltyWebApp.Services
                 else
                 {
                     var errorContent = await response.Content.ReadAsStringAsync();
-                    var errorResult = JsonSerializer.Deserialize<JsonElement>(errorContent);
-                    return errorResult.TryGetProperty("Message", out var msg) 
-                        ? msg.GetString() 
-                        : "Đăng ký thất bại";
+                    try 
+                    {
+                        var errorResult = JsonSerializer.Deserialize<JsonElement>(errorContent);
+                        if (errorResult.ValueKind == JsonValueKind.Object)
+                        {
+                            if (errorResult.TryGetProperty("Message", out var msg)) return msg.GetString();
+                            if (errorResult.TryGetProperty("message", out var msg2)) return msg2.GetString();
+                            if (errorResult.TryGetProperty("error", out var err)) return err.GetString();
+                        }
+                        // If it's a JSON string, return it
+                        if (errorResult.ValueKind == JsonValueKind.String)
+                        {
+                            return errorResult.GetString();
+                        }
+                    }
+                    catch
+                    {
+                        // Not valid JSON, use raw content
+                    }
+                    
+                    return string.IsNullOrWhiteSpace(errorContent) ? "Đăng ký thất bại" : errorContent;
                 }
             }
             catch (Exception ex)

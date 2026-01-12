@@ -1,0 +1,20 @@
+1. Giới thiệu mô hình dữ liệu (ERD)
+
+2. Các thao tác CRUD cơ bản
+	Create (Thêm)
+	Read (Đọc)
+	Update (Sửa)
+	Delete (Xóa)
+	
+3. Kiểm tra các ràng buộc dữ liệu (Constraints)
+	- Ràng buộc Unique: Thử đăng ký một email đã tồn tại và cho thấy hệ thống báo lỗi.
+	
+	- Ràng buộc Check/Not Null: Để trống các trường bắt buộc hoặc nhập số âm vào trường "Giá tiền" để xem DB/App ngăn chặn thế nào.
+	
+	- Ràng buộc Foreign Key: Thử xóa một "Danh mục" đang có chứa "Sản phẩm" để xem cơ chế ON DELETE CASCADE hoặc RESTRICT hoạt động.
+	
+4. Truy vấn phức tạp và Báo cáo - Thống kê: như "Top 5 khách hàng mua nhiều nhất"
+	
+5. Tính sẵn sàng cao - hệ thống hoạt động bình thường khi 1 node bị sập
+
+6. Mở rộng theo chiều ngang - thêm node

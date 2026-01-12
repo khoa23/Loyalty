@@ -23,17 +23,15 @@ try
     // Sử dụng Serilog thay vì logging mặc định
     builder.Host.UseSerilog();
 
-    builder.Services.AddRazorPages();
+    builder.Services.AddRazorPages()
+        .AddRazorPagesOptions(options =>
+        {
+            options.Conventions.AddPageRoute("/Admin/Create", "/Create");
+        });
     builder.Services.AddControllers();
     
     // Cấu hình HttpClient để bypass SSL validation (cho development/testing)
     // CẢNH BÁO: Chỉ sử dụng cho development, không dùng cho production!
-    var httpClientHandler = new HttpClientHandler();
-    if (!builder.Environment.IsProduction())
-    {
-        httpClientHandler.ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true;
-    }
-    
     builder.Services.AddHttpClient("LoyaltyAPI", client =>
     {
         client.BaseAddress = new Uri(builder.Configuration.GetValue<string>("ApiBaseUrl") ?? "https://localhost:5001/");
@@ -43,8 +41,17 @@ try
             client.DefaultRequestHeaders.Add("X-API-KEY", apiKey);
         }
     })
-    .ConfigureHttpClient((sp, client) => { })
-    .ConfigurePrimaryHttpMessageHandler(() => httpClientHandler);
+    .ConfigurePrimaryHttpMessageHandler(() => 
+    {
+        var handler = new HttpClientHandler();
+        // Cấu hình HttpClient để bypass SSL validation (cho development/testing)
+        // CẢNH BÁO: Chỉ sử dụng cho development, không dùng cho production!
+        if (!builder.Environment.IsProduction())
+        {
+            handler.ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true;
+        }
+        return handler;
+    });
 
 // Add session management
 builder.Services.AddDistributedMemoryCache();

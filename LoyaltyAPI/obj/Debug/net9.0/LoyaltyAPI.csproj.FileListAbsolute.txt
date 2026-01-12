@@ -47,7 +47,6 @@ D:\Code\LoyaltyAPI\LoyaltyAPI\obj\Debug\net9.0\refint\LoyaltyAPI.dll
 D:\Code\LoyaltyAPI\LoyaltyAPI\obj\Debug\net9.0\LoyaltyAPI.pdb
 D:\Code\LoyaltyAPI\LoyaltyAPI\obj\Debug\net9.0\LoyaltyAPI.genruntimeconfig.cache
 D:\Code\LoyaltyAPI\LoyaltyAPI\obj\Debug\net9.0\ref\LoyaltyAPI.dll
-D:\Code\LoyaltyAPI\LoyaltyAPI\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
 D:\Code\Loyalty\LoyaltyAPI\bin\Debug\net9.0\appsettings.Development.json
 D:\Code\Loyalty\LoyaltyAPI\bin\Debug\net9.0\appsettings.json
 D:\Code\Loyalty\LoyaltyAPI\bin\Debug\net9.0\LoyaltyAPI.staticwebassets.endpoints.json

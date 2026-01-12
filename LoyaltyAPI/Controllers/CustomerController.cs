@@ -145,5 +145,39 @@ namespace LoyaltyAPI.Controllers
                 return StatusCode(500, new { message = "Lỗi khi lấy thông tin khách hàng", error = ex.Message });
             }
         }
+
+        // API Thống kê top 5 khách hàng đổi quà nhiều nhất
+        [HttpGet("top-redeemers")]
+        public async Task<IActionResult> GetTopRedeemers()
+        {
+            try
+            {
+                using IDbConnection db = DatabaseConnectionHelper.CreateConnection(_connectionString, _logger);
+
+                var query = @"
+                    SELECT 
+                        c.customer_id AS CustomerId,
+                        c.full_name AS FullName,
+                        c.cif_number AS CifNumber,
+                        SUM(rh.quantity_redeemed) AS TotalGiftsRedeemed,
+                        SUM(rh.points_spent) AS TotalPointsSpent
+                    FROM loyalty_admin.customers c
+                    JOIN loyalty_admin.redemption_history rh ON c.customer_id = rh.customer_id
+                    GROUP BY c.customer_id, c.full_name, c.cif_number
+                    HAVING SUM(rh.quantity_redeemed) > 0
+                    ORDER BY TotalGiftsRedeemed DESC
+                    LIMIT 5";
+
+                var result = await db.QueryAsync<CustomerStatisticResponse>(query);
+
+                _logger.LogInformation("Retrieved top 5 redeemers");
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error retrieving top redeemers");
+                return StatusCode(500, new { message = "Lỗi khi lấy danh sách thống kê", error = ex.Message });
+            }
+        }
     }
 }

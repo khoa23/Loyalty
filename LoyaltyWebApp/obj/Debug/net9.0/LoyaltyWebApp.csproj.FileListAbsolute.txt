@@ -133,7 +133,6 @@ D:\Code\LoyaltyAPI\LoyaltyWebApp\obj\Debug\net9.0\refint\LoyaltyWebApp.dll
 D:\Code\LoyaltyAPI\LoyaltyWebApp\obj\Debug\net9.0\LoyaltyWebApp.pdb
 D:\Code\LoyaltyAPI\LoyaltyWebApp\obj\Debug\net9.0\LoyaltyWebApp.genruntimeconfig.cache
 D:\Code\LoyaltyAPI\LoyaltyWebApp\obj\Debug\net9.0\ref\LoyaltyWebApp.dll
-D:\Code\LoyaltyAPI\LoyaltyWebApp\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
 D:\Code\Loyalty\LoyaltyWebApp\bin\Debug\net9.0\appsettings.Development.json
 D:\Code\Loyalty\LoyaltyWebApp\bin\Debug\net9.0\appsettings.json
 D:\Code\Loyalty\LoyaltyWebApp\bin\Debug\net9.0\LoyaltyWebApp.staticwebassets.runtime.json

@@ -17,4 +17,4 @@
 	
 5. Tính sẵn sàng cao - hệ thống hoạt động bình thường khi 1 node bị sập
 
-6. Mở rộng theo chiều ngang - thêm node
+6. Mở rộng theo chiều ngang - Thêm node

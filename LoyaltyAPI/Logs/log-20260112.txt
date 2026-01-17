@@ -1,0 +1,333 @@
+2026-01-12 23:14:22.478 +07:00 [INF] Starting LoyaltyAPI application
+2026-01-12 23:14:23.055 +07:00 [INF] LoyaltyAPI is starting up
+2026-01-12 23:14:23.158 +07:00 [WRN] The WebRootPath was not found: D:\Code\LoyaltyAPI\LoyaltyAPI\wwwroot. Static files may be unavailable.
+2026-01-12 23:14:23.234 +07:00 [INF] Request starting HTTP/2 GET https://localhost:44343/ - null null
+2026-01-12 23:14:23.278 +07:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-01-12 23:14:23.287 +07:00 [INF] Hosting environment: Development
+2026-01-12 23:14:23.287 +07:00 [INF] Content root path: D:\Code\LoyaltyAPI\LoyaltyAPI
+2026-01-12 23:14:24.445 +07:00 [INF] Executing endpoint 'HTTP: GET /'
+2026-01-12 23:14:24.499 +07:00 [INF] Executed endpoint 'HTTP: GET /'
+2026-01-12 23:14:24.507 +07:00 [INF] Request finished HTTP/2 GET https://localhost:44343/ - 200 null text/plain; charset=utf-8 1273.6562ms
+2026-01-12 23:14:28.140 +07:00 [INF] Request starting HTTP/2 GET https://localhost:44343/favicon.ico - null null
+2026-01-12 23:14:28.145 +07:00 [INF] Request finished HTTP/2 GET https://localhost:44343/favicon.ico - 401 null null 4.9861ms
+2026-01-12 23:14:51.321 +07:00 [INF] Request starting HTTP/1.1 POST https://localhost:44343/api/User/login - application/json; charset=utf-8 null
+2026-01-12 23:14:51.324 +07:00 [INF] Executing endpoint 'LoyaltyAPI.Controllers.UserController.Login (LoyaltyAPI)'
+2026-01-12 23:14:51.340 +07:00 [INF] Route matched with {action = "Login", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(LoyaltyAPI.Model.LoginRequest) on controller LoyaltyAPI.Controllers.UserController (LoyaltyAPI).
+2026-01-12 23:15:45.993 +07:00 [INF] Request starting HTTP/1.1 POST https://localhost:44343/api/User/login - application/json; charset=utf-8 null
+2026-01-12 23:15:45.995 +07:00 [INF] Executing endpoint 'LoyaltyAPI.Controllers.UserController.Login (LoyaltyAPI)'
+2026-01-12 23:15:45.995 +07:00 [INF] Route matched with {action = "Login", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(LoyaltyAPI.Model.LoginRequest) on controller LoyaltyAPI.Controllers.UserController (LoyaltyAPI).
+2026-01-12 23:15:59.737 +07:00 [ERR] ✗ Failed to connect to database
+Npgsql.NpgsqlException (0x80004005): Unable to connect to a suitable host. Check inner exception for more details.
+ ---> System.AggregateException: One or more errors occurred. (The operation has timed out) (The operation has timed out) (Failed to connect to 127.0.0.1:26259) (The operation has timed out) (The operation has timed out) (Failed to connect to 127.0.0.1:26259)
+ ---> Npgsql.NpgsqlException (0x80004005): The operation has timed out
+ ---> System.TimeoutException: The operation has timed out.
+   at Npgsql.ThrowHelper.ThrowNpgsqlExceptionWithInnerTimeoutException(String message)
+   at Npgsql.Util.NpgsqlTimeout.Check()
+   at Npgsql.Util.NpgsqlTimeout.CheckAndGetTimeLeft()
+   at Npgsql.Internal.NpgsqlConnector.Connect(NpgsqlTimeout timeout)
+   at Npgsql.Internal.NpgsqlConnector.RawOpen(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|209_0(NpgsqlConnector conn, String username, SslMode sslMode, GssEncryptionMode gssEncMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|209_0(NpgsqlConnector conn, String username, SslMode sslMode, GssEncryptionMode gssEncMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlMultiHostDataSource.TryGetIdleOrNew(NpgsqlConnection conn, TimeSpan timeoutPerHost, Boolean async, TargetSessionAttributes preferredType, Func`3 stateValidator, Int32 poolIndex, IList`1 exceptions, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+ ---> (Inner Exception #1) Npgsql.NpgsqlException (0x80004005): The operation has timed out
+ ---> System.TimeoutException: The operation has timed out.
+   at Npgsql.ThrowHelper.ThrowNpgsqlExceptionWithInnerTimeoutException(String message)
+   at Npgsql.Util.NpgsqlTimeout.Check()
+   at Npgsql.Util.NpgsqlTimeout.CheckAndGetTimeLeft()
+   at Npgsql.Internal.NpgsqlConnector.Connect(NpgsqlTimeout timeout)
+   at Npgsql.Internal.NpgsqlConnector.RawOpen(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|209_0(NpgsqlConnector conn, String username, SslMode sslMode, GssEncryptionMode gssEncMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|209_0(NpgsqlConnector conn, String username, SslMode sslMode, GssEncryptionMode gssEncMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlMultiHostDataSource.TryGetIdleOrNew(NpgsqlConnection conn, TimeSpan timeoutPerHost, Boolean async, TargetSessionAttributes preferredType, Func`3 stateValidator, Int32 poolIndex, IList`1 exceptions, CancellationToken cancellationToken)<---
+
+ ---> (Inner Exception #2) Npgsql.NpgsqlException (0x80004005): Failed to connect to 127.0.0.1:26259
+ ---> System.Net.Sockets.SocketException (10061): No connection could be made because the target machine actively refused it.
+   at Npgsql.Internal.NpgsqlConnector.Connect(NpgsqlTimeout timeout)
+   at Npgsql.Internal.NpgsqlConnector.Connect(NpgsqlTimeout timeout)
+   at Npgsql.Internal.NpgsqlConnector.RawOpen(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|209_0(NpgsqlConnector conn, String username, SslMode sslMode, GssEncryptionMode gssEncMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlMultiHostDataSource.TryGetIdleOrNew(NpgsqlConnection conn, TimeSpan timeoutPerHost, Boolean async, TargetSessionAttributes preferredType, Func`3 stateValidator, Int32 poolIndex, IList`1 exceptions, CancellationToken cancellationToken)<---
+
+ ---> (Inner Exception #3) Npgsql.NpgsqlException (0x80004005): The operation has timed out
+ ---> System.TimeoutException: The operation has timed out.
+   at Npgsql.ThrowHelper.ThrowNpgsqlExceptionWithInnerTimeoutException(String message)
+   at Npgsql.Util.NpgsqlTimeout.Check()
+   at Npgsql.Util.NpgsqlTimeout.CheckAndGetTimeLeft()
+   at Npgsql.Internal.NpgsqlConnector.Connect(NpgsqlTimeout timeout)
+   at Npgsql.Internal.NpgsqlConnector.RawOpen(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|209_0(NpgsqlConnector conn, String username, SslMode sslMode, GssEncryptionMode gssEncMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|209_0(NpgsqlConnector conn, String username, SslMode sslMode, GssEncryptionMode gssEncMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.<Get>g__RentAsync|33_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlMultiHostDataSource.TryGet(NpgsqlConnection conn, TimeSpan timeoutPerHost, Boolean async, TargetSessionAttributes preferredType, Func`3 stateValidator, Int32 poolIndex, IList`1 exceptions, CancellationToken cancellationToken)<---
+
+ ---> (Inner Exception #4) Npgsql.NpgsqlException (0x80004005): The operation has timed out
+ ---> System.TimeoutException: The operation has timed out.
+   at Npgsql.ThrowHelper.ThrowNpgsqlExceptionWithInnerTimeoutException(String message)
+   at Npgsql.Util.NpgsqlTimeout.Check()
+   at Npgsql.Util.NpgsqlTimeout.CheckAndGetTimeLeft()
+   at Npgsql.Internal.NpgsqlConnector.Connect(NpgsqlTimeout timeout)
+   at Npgsql.Internal.NpgsqlConnector.RawOpen(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|209_0(NpgsqlConnector conn, String username, SslMode sslMode, GssEncryptionMode gssEncMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|209_0(NpgsqlConnector conn, String username, SslMode sslMode, GssEncryptionMode gssEncMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.<Get>g__RentAsync|33_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlMultiHostDataSource.TryGet(NpgsqlConnection conn, TimeSpan timeoutPerHost, Boolean async, TargetSessionAttributes preferredType, Func`3 stateValidator, Int32 poolIndex, IList`1 exceptions, CancellationToken cancellationToken)<---
+
+ ---> (Inner Exception #5) Npgsql.NpgsqlException (0x80004005): Failed to connect to 127.0.0.1:26259
+ ---> System.Net.Sockets.SocketException (10061): No connection could be made because the target machine actively refused it.
+   at Npgsql.Internal.NpgsqlConnector.Connect(NpgsqlTimeout timeout)
+   at Npgsql.Internal.NpgsqlConnector.Connect(NpgsqlTimeout timeout)
+   at Npgsql.Internal.NpgsqlConnector.RawOpen(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|209_0(NpgsqlConnector conn, String username, SslMode sslMode, GssEncryptionMode gssEncMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.<Get>g__RentAsync|33_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlMultiHostDataSource.TryGet(NpgsqlConnection conn, TimeSpan timeoutPerHost, Boolean async, TargetSessionAttributes preferredType, Func`3 stateValidator, Int32 poolIndex, IList`1 exceptions, CancellationToken cancellationToken)<---
+
+   at Npgsql.NpgsqlMultiHostDataSource.Get(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|42_0(Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.Open()
+   at LoyaltyAPI.Helpers.DatabaseConnectionHelper.CreateConnection(String connectionString, ILogger logger) in D:\Code\LoyaltyAPI\LoyaltyAPI\Helpers\DatabaseConnectionHelper.cs:line 13
+2026-01-12 23:15:59.761 +07:00 [INF] Executed action LoyaltyAPI.Controllers.UserController.Login (LoyaltyAPI) in 68417.8762ms
+2026-01-12 23:15:59.762 +07:00 [INF] Executed endpoint 'LoyaltyAPI.Controllers.UserController.Login (LoyaltyAPI)'
+2026-01-12 23:15:59.763 +07:00 [ERR] An unhandled exception has occurred while executing the request.
+Npgsql.NpgsqlException (0x80004005): Unable to connect to a suitable host. Check inner exception for more details.
+ ---> System.AggregateException: One or more errors occurred. (The operation has timed out) (The operation has timed out) (Failed to connect to 127.0.0.1:26259) (The operation has timed out) (The operation has timed out) (Failed to connect to 127.0.0.1:26259)
+ ---> Npgsql.NpgsqlException (0x80004005): The operation has timed out
+ ---> System.TimeoutException: The operation has timed out.
+   at Npgsql.ThrowHelper.ThrowNpgsqlExceptionWithInnerTimeoutException(String message)
+   at Npgsql.Util.NpgsqlTimeout.Check()
+   at Npgsql.Util.NpgsqlTimeout.CheckAndGetTimeLeft()
+   at Npgsql.Internal.NpgsqlConnector.Connect(NpgsqlTimeout timeout)
+   at Npgsql.Internal.NpgsqlConnector.RawOpen(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|209_0(NpgsqlConnector conn, String username, SslMode sslMode, GssEncryptionMode gssEncMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|209_0(NpgsqlConnector conn, String username, SslMode sslMode, GssEncryptionMode gssEncMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlMultiHostDataSource.TryGetIdleOrNew(NpgsqlConnection conn, TimeSpan timeoutPerHost, Boolean async, TargetSessionAttributes preferredType, Func`3 stateValidator, Int32 poolIndex, IList`1 exceptions, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+ ---> (Inner Exception #1) Npgsql.NpgsqlException (0x80004005): The operation has timed out
+ ---> System.TimeoutException: The operation has timed out.
+   at Npgsql.ThrowHelper.ThrowNpgsqlExceptionWithInnerTimeoutException(String message)
+   at Npgsql.Util.NpgsqlTimeout.Check()
+   at Npgsql.Util.NpgsqlTimeout.CheckAndGetTimeLeft()
+   at Npgsql.Internal.NpgsqlConnector.Connect(NpgsqlTimeout timeout)
+   at Npgsql.Internal.NpgsqlConnector.RawOpen(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|209_0(NpgsqlConnector conn, String username, SslMode sslMode, GssEncryptionMode gssEncMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|209_0(NpgsqlConnector conn, String username, SslMode sslMode, GssEncryptionMode gssEncMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlMultiHostDataSource.TryGetIdleOrNew(NpgsqlConnection conn, TimeSpan timeoutPerHost, Boolean async, TargetSessionAttributes preferredType, Func`3 stateValidator, Int32 poolIndex, IList`1 exceptions, CancellationToken cancellationToken)<---
+
+ ---> (Inner Exception #2) Npgsql.NpgsqlException (0x80004005): Failed to connect to 127.0.0.1:26259
+ ---> System.Net.Sockets.SocketException (10061): No connection could be made because the target machine actively refused it.
+   at Npgsql.Internal.NpgsqlConnector.Connect(NpgsqlTimeout timeout)
+   at Npgsql.Internal.NpgsqlConnector.Connect(NpgsqlTimeout timeout)
+   at Npgsql.Internal.NpgsqlConnector.RawOpen(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|209_0(NpgsqlConnector conn, String username, SslMode sslMode, GssEncryptionMode gssEncMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlMultiHostDataSource.TryGetIdleOrNew(NpgsqlConnection conn, TimeSpan timeoutPerHost, Boolean async, TargetSessionAttributes preferredType, Func`3 stateValidator, Int32 poolIndex, IList`1 exceptions, CancellationToken cancellationToken)<---
+
+ ---> (Inner Exception #3) Npgsql.NpgsqlException (0x80004005): The operation has timed out
+ ---> System.TimeoutException: The operation has timed out.
+   at Npgsql.ThrowHelper.ThrowNpgsqlExceptionWithInnerTimeoutException(String message)
+   at Npgsql.Util.NpgsqlTimeout.Check()
+   at Npgsql.Util.NpgsqlTimeout.CheckAndGetTimeLeft()
+   at Npgsql.Internal.NpgsqlConnector.Connect(NpgsqlTimeout timeout)
+   at Npgsql.Internal.NpgsqlConnector.RawOpen(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|209_0(NpgsqlConnector conn, String username, SslMode sslMode, GssEncryptionMode gssEncMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|209_0(NpgsqlConnector conn, String username, SslMode sslMode, GssEncryptionMode gssEncMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.<Get>g__RentAsync|33_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlMultiHostDataSource.TryGet(NpgsqlConnection conn, TimeSpan timeoutPerHost, Boolean async, TargetSessionAttributes preferredType, Func`3 stateValidator, Int32 poolIndex, IList`1 exceptions, CancellationToken cancellationToken)<---
+
+ ---> (Inner Exception #4) Npgsql.NpgsqlException (0x80004005): The operation has timed out
+ ---> System.TimeoutException: The operation has timed out.
+   at Npgsql.ThrowHelper.ThrowNpgsqlExceptionWithInnerTimeoutException(String message)
+   at Npgsql.Util.NpgsqlTimeout.Check()
+   at Npgsql.Util.NpgsqlTimeout.CheckAndGetTimeLeft()
+   at Npgsql.Internal.NpgsqlConnector.Connect(NpgsqlTimeout timeout)
+   at Npgsql.Internal.NpgsqlConnector.RawOpen(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|209_0(NpgsqlConnector conn, String username, SslMode sslMode, GssEncryptionMode gssEncMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|209_0(NpgsqlConnector conn, String username, SslMode sslMode, GssEncryptionMode gssEncMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.<Get>g__RentAsync|33_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlMultiHostDataSource.TryGet(NpgsqlConnection conn, TimeSpan timeoutPerHost, Boolean async, TargetSessionAttributes preferredType, Func`3 stateValidator, Int32 poolIndex, IList`1 exceptions, CancellationToken cancellationToken)<---
+
+ ---> (Inner Exception #5) Npgsql.NpgsqlException (0x80004005): Failed to connect to 127.0.0.1:26259
+ ---> System.Net.Sockets.SocketException (10061): No connection could be made because the target machine actively refused it.
+   at Npgsql.Internal.NpgsqlConnector.Connect(NpgsqlTimeout timeout)
+   at Npgsql.Internal.NpgsqlConnector.Connect(NpgsqlTimeout timeout)
+   at Npgsql.Internal.NpgsqlConnector.RawOpen(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|209_0(NpgsqlConnector conn, String username, SslMode sslMode, GssEncryptionMode gssEncMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.<Get>g__RentAsync|33_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlMultiHostDataSource.TryGet(NpgsqlConnection conn, TimeSpan timeoutPerHost, Boolean async, TargetSessionAttributes preferredType, Func`3 stateValidator, Int32 poolIndex, IList`1 exceptions, CancellationToken cancellationToken)<---
+
+   at Npgsql.NpgsqlMultiHostDataSource.Get(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|42_0(Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.Open()
+   at LoyaltyAPI.Helpers.DatabaseConnectionHelper.CreateConnection(String connectionString, ILogger logger) in D:\Code\LoyaltyAPI\LoyaltyAPI\Helpers\DatabaseConnectionHelper.cs:line 13
+   at LoyaltyAPI.Controllers.UserController.Login(LoginRequest request) in D:\Code\LoyaltyAPI\LoyaltyAPI\Controllers\UserController.cs:line 35
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at LoyaltyAPI.Security.ApiKeyMiddleware.InvokeAsync(HttpContext context) in D:\Code\LoyaltyAPI\LoyaltyAPI\Security\ApiKeyMiddleware.cs:line 42
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2026-01-12 23:15:59.787 +07:00 [INF] Request finished HTTP/1.1 POST https://localhost:44343/api/User/login - 500 null text/plain; charset=utf-8 68466.059ms
+2026-01-12 23:16:17.022 +07:00 [INF] ✓ Database connected successfully - Host: localhost, Port: 26258, Database: loyalty_db
+2026-01-12 23:16:18.148 +07:00 [INF] User khachhang_b logged in successfully.
+2026-01-12 23:16:18.188 +07:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType13`2[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[<>f__AnonymousType21`4[[System.Object, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Object, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Object, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Nullable`1[[System.Int64, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], LoyaltyAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-01-12 23:16:18.211 +07:00 [INF] Executed action LoyaltyAPI.Controllers.UserController.Login (LoyaltyAPI) in 32215.7987ms
+2026-01-12 23:16:18.212 +07:00 [INF] Executed endpoint 'LoyaltyAPI.Controllers.UserController.Login (LoyaltyAPI)'
+2026-01-12 23:16:18.216 +07:00 [INF] Request finished HTTP/1.1 POST https://localhost:44343/api/User/login - 200 null application/json; charset=utf-8 32222.8273ms
+2026-01-12 23:16:18.280 +07:00 [INF] Request starting HTTP/1.1 GET https://localhost:44343/api/User/customer/1134039809002831873 - null null
+2026-01-12 23:16:18.281 +07:00 [INF] Executing endpoint 'LoyaltyAPI.Controllers.UserController.GetCustomerInfo (LoyaltyAPI)'
+2026-01-12 23:16:18.285 +07:00 [INF] Route matched with {action = "GetCustomerInfo", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetCustomerInfo(Int64) on controller LoyaltyAPI.Controllers.UserController (LoyaltyAPI).
+2026-01-12 23:16:18.287 +07:00 [INF] ✓ Database connected successfully - Host: localhost, Port: 26258, Database: loyalty_db
+2026-01-12 23:16:18.294 +07:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType26`2[[System.Object, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Object, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-01-12 23:16:18.295 +07:00 [INF] Executed action LoyaltyAPI.Controllers.UserController.GetCustomerInfo (LoyaltyAPI) in 9.9814ms
+2026-01-12 23:16:18.295 +07:00 [INF] Executed endpoint 'LoyaltyAPI.Controllers.UserController.GetCustomerInfo (LoyaltyAPI)'
+2026-01-12 23:16:18.296 +07:00 [INF] Request finished HTTP/1.1 GET https://localhost:44343/api/User/customer/1134039809002831873 - 200 null application/json; charset=utf-8 15.4433ms
+2026-01-12 23:16:18.300 +07:00 [INF] Request starting HTTP/1.1 GET https://localhost:44343/api/User/customer/rewards?page=1&pageSize=1 - null null
+2026-01-12 23:16:18.300 +07:00 [INF] Executing endpoint 'LoyaltyAPI.Controllers.UserController.GetCustomer (LoyaltyAPI)'
+2026-01-12 23:16:18.304 +07:00 [INF] Route matched with {action = "GetCustomer", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetCustomer(Int32, Int32) on controller LoyaltyAPI.Controllers.UserController (LoyaltyAPI).
+2026-01-12 23:16:18.309 +07:00 [INF] GetCustomer called with page 1, pageSize 1
+2026-01-12 23:16:18.374 +07:00 [INF] GetCustomer returned 1 rewards for page 1, totalCount 8
+2026-01-12 23:16:18.374 +07:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType4`8[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.List`1[[LoyaltyAPI.Model.RewardResponse, LoyaltyAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Boolean, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Boolean, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-01-12 23:16:18.380 +07:00 [INF] Executed action LoyaltyAPI.Controllers.UserController.GetCustomer (LoyaltyAPI) in 76.0614ms
+2026-01-12 23:16:18.380 +07:00 [INF] Executed endpoint 'LoyaltyAPI.Controllers.UserController.GetCustomer (LoyaltyAPI)'
+2026-01-12 23:16:18.381 +07:00 [INF] Request finished HTTP/1.1 GET https://localhost:44343/api/User/customer/rewards?page=1&pageSize=1 - 200 null application/json; charset=utf-8 80.5487ms
+2026-01-12 23:16:18.603 +07:00 [INF] Request starting HTTP/1.1 GET https://localhost:44343/api/User/customer/rewards?page=1&pageSize=6 - null null
+2026-01-12 23:16:18.604 +07:00 [INF] Executing endpoint 'LoyaltyAPI.Controllers.UserController.GetCustomer (LoyaltyAPI)'
+2026-01-12 23:16:18.605 +07:00 [INF] Route matched with {action = "GetCustomer", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetCustomer(Int32, Int32) on controller LoyaltyAPI.Controllers.UserController (LoyaltyAPI).
+2026-01-12 23:16:18.605 +07:00 [INF] GetCustomer called with page 1, pageSize 6
+2026-01-12 23:16:18.618 +07:00 [INF] GetCustomer returned 6 rewards for page 1, totalCount 8
+2026-01-12 23:16:18.618 +07:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType4`8[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.List`1[[LoyaltyAPI.Model.RewardResponse, LoyaltyAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Boolean, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Boolean, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-01-12 23:16:18.619 +07:00 [INF] Executed action LoyaltyAPI.Controllers.UserController.GetCustomer (LoyaltyAPI) in 14.3365ms
+2026-01-12 23:16:18.619 +07:00 [INF] Executed endpoint 'LoyaltyAPI.Controllers.UserController.GetCustomer (LoyaltyAPI)'
+2026-01-12 23:16:18.619 +07:00 [INF] Request finished HTTP/1.1 GET https://localhost:44343/api/User/customer/rewards?page=1&pageSize=6 - 200 null application/json; charset=utf-8 16.055ms
+2026-01-12 23:16:18.710 +07:00 [INF] Request starting HTTP/2 GET https://localhost:44343/Uploads/rewards/reward_1136866869229289473_20260108053941.png - null null
+2026-01-12 23:16:18.713 +07:00 [INF] Request starting HTTP/2 GET https://localhost:44343/Uploads/rewards/reward_1137158563853271041_20251230140733.png - null null
+2026-01-12 23:16:18.714 +07:00 [INF] Request starting HTTP/2 GET https://localhost:44343/Uploads/rewards/reward_1136864802507718657_20251231141836.png - null null
+2026-01-12 23:16:18.716 +07:00 [INF] Request starting HTTP/2 GET https://localhost:44343/Uploads/rewards/reward_1136872304970760193_20260108054009.png - null null
+2026-01-12 23:16:18.720 +07:00 [INF] Request starting HTTP/2 GET https://localhost:44343/Uploads/rewards/reward_1136606618552565761_20260108054107.jpg - null null
+2026-01-12 23:16:18.722 +07:00 [INF] Request starting HTTP/2 GET https://localhost:44343/Uploads/rewards/reward_1137433323122720769_20251231132503.jpg - null null
+2026-01-12 23:16:18.730 +07:00 [INF] Sending file. Request path: '/rewards/reward_1137433323122720769_20251231132503.jpg'. Physical path: 'D:\Code\LoyaltyAPI\LoyaltyAPI\Uploads\rewards\reward_1137433323122720769_20251231132503.jpg'
+2026-01-12 23:16:18.730 +07:00 [INF] Sending file. Request path: '/rewards/reward_1136606618552565761_20260108054107.jpg'. Physical path: 'D:\Code\LoyaltyAPI\LoyaltyAPI\Uploads\rewards\reward_1136606618552565761_20260108054107.jpg'
+2026-01-12 23:16:18.731 +07:00 [INF] Sending file. Request path: '/rewards/reward_1136866869229289473_20260108053941.png'. Physical path: 'D:\Code\LoyaltyAPI\LoyaltyAPI\Uploads\rewards\reward_1136866869229289473_20260108053941.png'
+2026-01-12 23:16:18.731 +07:00 [INF] Sending file. Request path: '/rewards/reward_1136872304970760193_20260108054009.png'. Physical path: 'D:\Code\LoyaltyAPI\LoyaltyAPI\Uploads\rewards\reward_1136872304970760193_20260108054009.png'
+2026-01-12 23:16:18.731 +07:00 [INF] Request finished HTTP/2 GET https://localhost:44343/Uploads/rewards/reward_1136866869229289473_20260108053941.png - 200 18039 image/png 20.891ms
+2026-01-12 23:16:18.731 +07:00 [INF] Request finished HTTP/2 GET https://localhost:44343/Uploads/rewards/reward_1136872304970760193_20260108054009.png - 200 2834 image/png 15.4394ms
+2026-01-12 23:16:18.731 +07:00 [INF] Sending file. Request path: '/rewards/reward_1137158563853271041_20251230140733.png'. Physical path: 'D:\Code\LoyaltyAPI\LoyaltyAPI\Uploads\rewards\reward_1137158563853271041_20251230140733.png'
+2026-01-12 23:16:18.732 +07:00 [INF] Request finished HTTP/2 GET https://localhost:44343/Uploads/rewards/reward_1137158563853271041_20251230140733.png - 200 7631 image/png 19.8932ms
+2026-01-12 23:16:18.731 +07:00 [INF] Request finished HTTP/2 GET https://localhost:44343/Uploads/rewards/reward_1137433323122720769_20251231132503.jpg - 200 7722 image/jpeg 9.084ms
+2026-01-12 23:16:18.746 +07:00 [INF] Request finished HTTP/2 GET https://localhost:44343/Uploads/rewards/reward_1136606618552565761_20260108054107.jpg - 200 37282 image/jpeg 26.2081ms
+2026-01-12 23:16:18.756 +07:00 [INF] Sending file. Request path: '/rewards/reward_1136864802507718657_20251231141836.png'. Physical path: 'D:\Code\LoyaltyAPI\LoyaltyAPI\Uploads\rewards\reward_1136864802507718657_20251231141836.png'
+2026-01-12 23:16:18.780 +07:00 [INF] Request finished HTTP/2 GET https://localhost:44343/Uploads/rewards/reward_1136864802507718657_20251231141836.png - 200 99211 image/png 66.2009ms
+2026-01-12 23:16:47.972 +07:00 [INF] Request starting HTTP/1.1 POST https://localhost:44343/api/User/login - application/json; charset=utf-8 null
+2026-01-12 23:16:47.973 +07:00 [INF] Executing endpoint 'LoyaltyAPI.Controllers.UserController.Login (LoyaltyAPI)'
+2026-01-12 23:16:47.973 +07:00 [INF] Route matched with {action = "Login", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(LoyaltyAPI.Model.LoginRequest) on controller LoyaltyAPI.Controllers.UserController (LoyaltyAPI).
+2026-01-12 23:16:48.206 +07:00 [INF] ✓ Database connected successfully - Host: localhost, Port: 26257, Database: loyalty_db
+2026-01-12 23:16:48.525 +07:00 [INF] User khachhang_b logged in successfully.
+2026-01-12 23:16:48.525 +07:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType13`2[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[<>f__AnonymousType21`4[[System.Object, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Object, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Object, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Nullable`1[[System.Int64, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], LoyaltyAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-01-12 23:16:48.525 +07:00 [INF] Executed action LoyaltyAPI.Controllers.UserController.Login (LoyaltyAPI) in 552.6765ms
+2026-01-12 23:16:48.526 +07:00 [INF] Executed endpoint 'LoyaltyAPI.Controllers.UserController.Login (LoyaltyAPI)'
+2026-01-12 23:16:48.526 +07:00 [INF] Request finished HTTP/1.1 POST https://localhost:44343/api/User/login - 200 null application/json; charset=utf-8 553.5722ms
+2026-01-12 23:16:48.545 +07:00 [INF] Request starting HTTP/1.1 GET https://localhost:44343/api/User/customer/1134039809002831873 - null null
+2026-01-12 23:16:48.545 +07:00 [INF] Executing endpoint 'LoyaltyAPI.Controllers.UserController.GetCustomerInfo (LoyaltyAPI)'
+2026-01-12 23:16:48.545 +07:00 [INF] Route matched with {action = "GetCustomerInfo", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetCustomerInfo(Int64) on controller LoyaltyAPI.Controllers.UserController (LoyaltyAPI).
+2026-01-12 23:16:48.545 +07:00 [INF] ✓ Database connected successfully - Host: localhost, Port: 26257, Database: loyalty_db
+2026-01-12 23:16:48.550 +07:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType26`2[[System.Object, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Object, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-01-12 23:16:48.551 +07:00 [INF] Executed action LoyaltyAPI.Controllers.UserController.GetCustomerInfo (LoyaltyAPI) in 5.7406ms
+2026-01-12 23:16:48.551 +07:00 [INF] Executed endpoint 'LoyaltyAPI.Controllers.UserController.GetCustomerInfo (LoyaltyAPI)'
+2026-01-12 23:16:48.551 +07:00 [INF] Request finished HTTP/1.1 GET https://localhost:44343/api/User/customer/1134039809002831873 - 200 null application/json; charset=utf-8 6.3546ms
+2026-01-12 23:16:48.552 +07:00 [INF] Request starting HTTP/1.1 GET https://localhost:44343/api/User/customer/rewards?page=1&pageSize=1 - null null
+2026-01-12 23:16:48.552 +07:00 [INF] Executing endpoint 'LoyaltyAPI.Controllers.UserController.GetCustomer (LoyaltyAPI)'
+2026-01-12 23:16:48.552 +07:00 [INF] Route matched with {action = "GetCustomer", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetCustomer(Int32, Int32) on controller LoyaltyAPI.Controllers.UserController (LoyaltyAPI).
+2026-01-12 23:16:48.553 +07:00 [INF] GetCustomer called with page 1, pageSize 1
+2026-01-12 23:16:48.584 +07:00 [INF] GetCustomer returned 1 rewards for page 1, totalCount 8
+2026-01-12 23:16:48.584 +07:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType4`8[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.List`1[[LoyaltyAPI.Model.RewardResponse, LoyaltyAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Boolean, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Boolean, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-01-12 23:16:48.584 +07:00 [INF] Executed action LoyaltyAPI.Controllers.UserController.GetCustomer (LoyaltyAPI) in 31.9492ms
+2026-01-12 23:16:48.584 +07:00 [INF] Executed endpoint 'LoyaltyAPI.Controllers.UserController.GetCustomer (LoyaltyAPI)'
+2026-01-12 23:16:48.585 +07:00 [INF] Request finished HTTP/1.1 GET https://localhost:44343/api/User/customer/rewards?page=1&pageSize=1 - 200 null application/json; charset=utf-8 32.7372ms
+2026-01-12 23:16:48.758 +07:00 [INF] Request starting HTTP/1.1 GET https://localhost:44343/api/User/customer/rewards?page=1&pageSize=6 - null null
+2026-01-12 23:16:48.759 +07:00 [INF] Executing endpoint 'LoyaltyAPI.Controllers.UserController.GetCustomer (LoyaltyAPI)'
+2026-01-12 23:16:48.759 +07:00 [INF] Route matched with {action = "GetCustomer", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetCustomer(Int32, Int32) on controller LoyaltyAPI.Controllers.UserController (LoyaltyAPI).
+2026-01-12 23:16:48.760 +07:00 [INF] GetCustomer called with page 1, pageSize 6
+2026-01-12 23:16:48.791 +07:00 [INF] GetCustomer returned 6 rewards for page 1, totalCount 8
+2026-01-12 23:16:48.791 +07:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType4`8[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.List`1[[LoyaltyAPI.Model.RewardResponse, LoyaltyAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Boolean, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Boolean, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-01-12 23:16:48.792 +07:00 [INF] Executed action LoyaltyAPI.Controllers.UserController.GetCustomer (LoyaltyAPI) in 32.7633ms
+2026-01-12 23:16:48.793 +07:00 [INF] Executed endpoint 'LoyaltyAPI.Controllers.UserController.GetCustomer (LoyaltyAPI)'
+2026-01-12 23:16:48.793 +07:00 [INF] Request finished HTTP/1.1 GET https://localhost:44343/api/User/customer/rewards?page=1&pageSize=6 - 200 null application/json; charset=utf-8 34.8673ms
+2026-01-12 23:16:54.653 +07:00 [INF] Request starting HTTP/1.1 POST https://localhost:44343/api/Reward/redeem - application/json; charset=utf-8 null
+2026-01-12 23:16:54.653 +07:00 [INF] Executing endpoint 'LoyaltyAPI.Controllers.RewardController.RedeemReward (LoyaltyAPI)'
+2026-01-12 23:16:54.656 +07:00 [INF] Route matched with {action = "RedeemReward", controller = "Reward"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] RedeemReward(LoyaltyAPI.Model.RedeemRewardRequest) on controller LoyaltyAPI.Controllers.RewardController (LoyaltyAPI).
+2026-01-12 23:16:54.660 +07:00 [INF] Redeem reward request: CustomerId=1134039809066205185, RewardId=1136606618552565761, Quantity=1
+2026-01-12 23:16:54.660 +07:00 [INF] ✓ Database connected successfully - Host: localhost, Port: 26257, Database: loyalty_db
+2026-01-12 23:16:54.725 +07:00 [INF] Reward redeemed successfully for customer 1134039809066205185, reward 1136606618552565761, quantity 1
+2026-01-12 23:16:54.725 +07:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType13`2[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[LoyaltyAPI.Model.RedeemRewardResponse, LoyaltyAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-01-12 23:16:54.727 +07:00 [INF] Executed action LoyaltyAPI.Controllers.RewardController.RedeemReward (LoyaltyAPI) in 71.0873ms
+2026-01-12 23:16:54.727 +07:00 [INF] Executed endpoint 'LoyaltyAPI.Controllers.RewardController.RedeemReward (LoyaltyAPI)'
+2026-01-12 23:16:54.728 +07:00 [INF] Request finished HTTP/1.1 POST https://localhost:44343/api/Reward/redeem - 200 null application/json; charset=utf-8 74.855ms
+2026-01-12 23:16:54.729 +07:00 [INF] Request starting HTTP/1.1 GET https://localhost:44343/api/User/customer/1134039809002831873 - null null
+2026-01-12 23:16:54.729 +07:00 [INF] Executing endpoint 'LoyaltyAPI.Controllers.UserController.GetCustomerInfo (LoyaltyAPI)'
+2026-01-12 23:16:54.729 +07:00 [INF] Route matched with {action = "GetCustomerInfo", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetCustomerInfo(Int64) on controller LoyaltyAPI.Controllers.UserController (LoyaltyAPI).
+2026-01-12 23:16:54.729 +07:00 [INF] ✓ Database connected successfully - Host: localhost, Port: 26257, Database: loyalty_db
+2026-01-12 23:16:54.734 +07:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType26`2[[System.Object, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Object, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-01-12 23:16:54.735 +07:00 [INF] Executed action LoyaltyAPI.Controllers.UserController.GetCustomerInfo (LoyaltyAPI) in 5.4623ms
+2026-01-12 23:16:54.735 +07:00 [INF] Executed endpoint 'LoyaltyAPI.Controllers.UserController.GetCustomerInfo (LoyaltyAPI)'
+2026-01-12 23:16:54.735 +07:00 [INF] Request finished HTTP/1.1 GET https://localhost:44343/api/User/customer/1134039809002831873 - 200 null application/json; charset=utf-8 6.0674ms
+2026-01-12 23:16:54.735 +07:00 [INF] Request starting HTTP/1.1 GET https://localhost:44343/api/User/customer/rewards?page=1&pageSize=1 - null null
+2026-01-12 23:16:54.736 +07:00 [INF] Executing endpoint 'LoyaltyAPI.Controllers.UserController.GetCustomer (LoyaltyAPI)'
+2026-01-12 23:16:54.736 +07:00 [INF] Route matched with {action = "GetCustomer", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetCustomer(Int32, Int32) on controller LoyaltyAPI.Controllers.UserController (LoyaltyAPI).
+2026-01-12 23:16:54.736 +07:00 [INF] GetCustomer called with page 1, pageSize 1
+2026-01-12 23:16:54.744 +07:00 [INF] GetCustomer returned 1 rewards for page 1, totalCount 8
+2026-01-12 23:16:54.744 +07:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType4`8[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.List`1[[LoyaltyAPI.Model.RewardResponse, LoyaltyAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Boolean, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Boolean, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-01-12 23:16:54.745 +07:00 [INF] Executed action LoyaltyAPI.Controllers.UserController.GetCustomer (LoyaltyAPI) in 9.0342ms
+2026-01-12 23:16:54.745 +07:00 [INF] Executed endpoint 'LoyaltyAPI.Controllers.UserController.GetCustomer (LoyaltyAPI)'
+2026-01-12 23:16:54.745 +07:00 [INF] Request finished HTTP/1.1 GET https://localhost:44343/api/User/customer/rewards?page=1&pageSize=1 - 200 null application/json; charset=utf-8 9.4613ms
+2026-01-12 23:16:54.880 +07:00 [INF] Request starting HTTP/1.1 GET https://localhost:44343/api/User/customer/rewards?page=1&pageSize=6 - null null
+2026-01-12 23:16:54.881 +07:00 [INF] Executing endpoint 'LoyaltyAPI.Controllers.UserController.GetCustomer (LoyaltyAPI)'
+2026-01-12 23:16:54.881 +07:00 [INF] Route matched with {action = "GetCustomer", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetCustomer(Int32, Int32) on controller LoyaltyAPI.Controllers.UserController (LoyaltyAPI).
+2026-01-12 23:16:54.881 +07:00 [INF] GetCustomer called with page 1, pageSize 6
+2026-01-12 23:16:54.904 +07:00 [INF] GetCustomer returned 6 rewards for page 1, totalCount 8
+2026-01-12 23:16:54.905 +07:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType4`8[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.List`1[[LoyaltyAPI.Model.RewardResponse, LoyaltyAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Boolean, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Boolean, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-01-12 23:16:54.905 +07:00 [INF] Executed action LoyaltyAPI.Controllers.UserController.GetCustomer (LoyaltyAPI) in 24.4723ms
+2026-01-12 23:16:54.906 +07:00 [INF] Executed endpoint 'LoyaltyAPI.Controllers.UserController.GetCustomer (LoyaltyAPI)'
+2026-01-12 23:16:54.906 +07:00 [INF] Request finished HTTP/1.1 GET https://localhost:44343/api/User/customer/rewards?page=1&pageSize=6 - 200 null application/json; charset=utf-8 25.7081ms
+2026-01-12 23:16:56.492 +07:00 [INF] Request starting HTTP/1.1 GET https://localhost:44343/api/Reward/history/1134039809066205185?page=1&pageSize=100 - null null
+2026-01-12 23:16:56.493 +07:00 [INF] Executing endpoint 'LoyaltyAPI.Controllers.RewardController.GetRedemptionHistory (LoyaltyAPI)'
+2026-01-12 23:16:56.498 +07:00 [INF] Route matched with {action = "GetRedemptionHistory", controller = "Reward"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetRedemptionHistory(Int64, Int32, Int32) on controller LoyaltyAPI.Controllers.RewardController (LoyaltyAPI).
+2026-01-12 23:16:56.500 +07:00 [INF] ✓ Database connected successfully - Host: localhost, Port: 26257, Database: loyalty_db
+2026-01-12 23:16:56.519 +07:00 [INF] Redemption history retrieved successfully for customer 1134039809066205185, page 1, pageSize 100, count 7
+2026-01-12 23:16:56.519 +07:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType19`6[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.List`1[[LoyaltyAPI.Model.RedemptionHistoryResponse, LoyaltyAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Boolean, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-01-12 23:16:56.521 +07:00 [INF] Executed action LoyaltyAPI.Controllers.RewardController.GetRedemptionHistory (LoyaltyAPI) in 23.0473ms
+2026-01-12 23:16:56.521 +07:00 [INF] Executed endpoint 'LoyaltyAPI.Controllers.RewardController.GetRedemptionHistory (LoyaltyAPI)'
+2026-01-12 23:16:56.521 +07:00 [INF] Request finished HTTP/1.1 GET https://localhost:44343/api/Reward/history/1134039809066205185?page=1&pageSize=100 - 200 null application/json; charset=utf-8 29.3389ms

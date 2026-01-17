@@ -3,7 +3,7 @@
 <Project>
   <PropertyGroup>
     <_PublishTargetUrl>D:\Code\LoyaltyAPI\Deploy\LoyaltyAPI</_PublishTargetUrl>
-    <History>True|2026-01-08T13:25:33.2625072Z||;False|2026-01-08T20:25:21.0784885+07:00||;True|2026-01-08T20:15:56.1520307+07:00||;True|2026-01-08T20:10:00.9217716+07:00||;True|2026-01-08T19:47:26.1518990+07:00||;</History>
+    <History>True|2026-01-17T04:28:55.5865093Z||;True|2026-01-08T20:25:33.2625072+07:00||;False|2026-01-08T20:25:21.0784885+07:00||;True|2026-01-08T20:15:56.1520307+07:00||;True|2026-01-08T20:10:00.9217716+07:00||;True|2026-01-08T19:47:26.1518990+07:00||;</History>
     <LastFailureDetails />
   </PropertyGroup>
 </Project>

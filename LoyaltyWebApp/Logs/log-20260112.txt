@@ -1,0 +1,129 @@
+2026-01-12 23:14:19.659 +07:00 [INF] Starting LoyaltyWebApp application
+2026-01-12 23:14:23.458 +07:00 [INF] LoyaltyWebApp is starting up
+2026-01-12 23:15:59.792 +07:00 [INF] Login API response status: "InternalServerError"
+2026-01-12 23:15:59.795 +07:00 [WRN] Login API failed with status "InternalServerError": Npgsql.NpgsqlException (0x80004005): Unable to connect to a suitable host. Check inner exception for more details.
+ ---> System.AggregateException: One or more errors occurred. (The operation has timed out) (The operation has timed out) (Failed to connect to 127.0.0.1:26259) (The operation has timed out) (The operation has timed out) (Failed to connect to 127.0.0.1:26259)
+ ---> Npgsql.NpgsqlException (0x80004005): The operation has timed out
+ ---> System.TimeoutException: The operation has timed out.
+   at Npgsql.ThrowHelper.ThrowNpgsqlExceptionWithInnerTimeoutException(String message)
+   at Npgsql.Util.NpgsqlTimeout.Check()
+   at Npgsql.Util.NpgsqlTimeout.CheckAndGetTimeLeft()
+   at Npgsql.Internal.NpgsqlConnector.Connect(NpgsqlTimeout timeout)
+   at Npgsql.Internal.NpgsqlConnector.RawOpen(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|209_0(NpgsqlConnector conn, String username, SslMode sslMode, GssEncryptionMode gssEncMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|209_0(NpgsqlConnector conn, String username, SslMode sslMode, GssEncryptionMode gssEncMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlMultiHostDataSource.TryGetIdleOrNew(NpgsqlConnection conn, TimeSpan timeoutPerHost, Boolean async, TargetSessionAttributes preferredType, Func`3 stateValidator, Int32 poolIndex, IList`1 exceptions, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+ ---> (Inner Exception #1) Npgsql.NpgsqlException (0x80004005): The operation has timed out
+ ---> System.TimeoutException: The operation has timed out.
+   at Npgsql.ThrowHelper.ThrowNpgsqlExceptionWithInnerTimeoutException(String message)
+   at Npgsql.Util.NpgsqlTimeout.Check()
+   at Npgsql.Util.NpgsqlTimeout.CheckAndGetTimeLeft()
+   at Npgsql.Internal.NpgsqlConnector.Connect(NpgsqlTimeout timeout)
+   at Npgsql.Internal.NpgsqlConnector.RawOpen(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|209_0(NpgsqlConnector conn, String username, SslMode sslMode, GssEncryptionMode gssEncMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|209_0(NpgsqlConnector conn, String username, SslMode sslMode, GssEncryptionMode gssEncMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlMultiHostDataSource.TryGetIdleOrNew(NpgsqlConnection conn, TimeSpan timeoutPerHost, Boolean async, TargetSessionAttributes preferredType, Func`3 stateValidator, Int32 poolIndex, IList`1 exceptions, CancellationToken cancellationToken)<---
+
+ ---> (Inner Exception #2) Npgsql.NpgsqlException (0x80004005): Failed to connect to 127.0.0.1:26259
+ ---> System.Net.Sockets.SocketException (10061): No connection could be made because the target machine actively refused it.
+   at Npgsql.Internal.NpgsqlConnector.Connect(NpgsqlTimeout timeout)
+   at Npgsql.Internal.NpgsqlConnector.Connect(NpgsqlTimeout timeout)
+   at Npgsql.Internal.NpgsqlConnector.RawOpen(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|209_0(NpgsqlConnector conn, String username, SslMode sslMode, GssEncryptionMode gssEncMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlMultiHostDataSource.TryGetIdleOrNew(NpgsqlConnection conn, TimeSpan timeoutPerHost, Boolean async, TargetSessionAttributes preferredType, Func`3 stateValidator, Int32 poolIndex, IList`1 exceptions, CancellationToken cancellationToken)<---
+
+ ---> (Inner Exception #3) Npgsql.NpgsqlException (0x80004005): The operation has timed out
+ ---> System.TimeoutException: The operation has timed out.
+   at Npgsql.ThrowHelper.ThrowNpgsqlExceptionWithInnerTimeoutException(String message)
+   at Npgsql.Util.NpgsqlTimeout.Check()
+   at Npgsql.Util.NpgsqlTimeout.CheckAndGetTimeLeft()
+   at Npgsql.Internal.NpgsqlConnector.Connect(NpgsqlTimeout timeout)
+   at Npgsql.Internal.NpgsqlConnector.RawOpen(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|209_0(NpgsqlConnector conn, String username, SslMode sslMode, GssEncryptionMode gssEncMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|209_0(NpgsqlConnector conn, String username, SslMode sslMode, GssEncryptionMode gssEncMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.<Get>g__RentAsync|33_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlMultiHostDataSource.TryGet(NpgsqlConnection conn, TimeSpan timeoutPerHost, Boolean async, TargetSessionAttributes preferredType, Func`3 stateValidator, Int32 poolIndex, IList`1 exceptions, CancellationToken cancellationToken)<---
+
+ ---> (Inner Exception #4) Npgsql.NpgsqlException (0x80004005): The operation has timed out
+ ---> System.TimeoutException: The operation has timed out.
+   at Npgsql.ThrowHelper.ThrowNpgsqlExceptionWithInnerTimeoutException(String message)
+   at Npgsql.Util.NpgsqlTimeout.Check()
+   at Npgsql.Util.NpgsqlTimeout.CheckAndGetTimeLeft()
+   at Npgsql.Internal.NpgsqlConnector.Connect(NpgsqlTimeout timeout)
+   at Npgsql.Internal.NpgsqlConnector.RawOpen(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|209_0(NpgsqlConnector conn, String username, SslMode sslMode, GssEncryptionMode gssEncMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|209_0(NpgsqlConnector conn, String username, SslMode sslMode, GssEncryptionMode gssEncMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.<Get>g__RentAsync|33_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlMultiHostDataSource.TryGet(NpgsqlConnection conn, TimeSpan timeoutPerHost, Boolean async, TargetSessionAttributes preferredType, Func`3 stateValidator, Int32 poolIndex, IList`1 exceptions, CancellationToken cancellationToken)<---
+
+ ---> (Inner Exception #5) Npgsql.NpgsqlException (0x80004005): Failed to connect to 127.0.0.1:26259
+ ---> System.Net.Sockets.SocketException (10061): No connection could be made because the target machine actively refused it.
+   at Npgsql.Internal.NpgsqlConnector.Connect(NpgsqlTimeout timeout)
+   at Npgsql.Internal.NpgsqlConnector.Connect(NpgsqlTimeout timeout)
+   at Npgsql.Internal.NpgsqlConnector.RawOpen(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|209_0(NpgsqlConnector conn, String username, SslMode sslMode, GssEncryptionMode gssEncMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.<Get>g__RentAsync|33_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlMultiHostDataSource.TryGet(NpgsqlConnection conn, TimeSpan timeoutPerHost, Boolean async, TargetSessionAttributes preferredType, Func`3 stateValidator, Int32 poolIndex, IList`1 exceptions, CancellationToken cancellationToken)<---
+
+   at Npgsql.NpgsqlMultiHostDataSource.Get(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|42_0(Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.Open()
+   at LoyaltyAPI.Helpers.DatabaseConnectionHelper.CreateConnection(String connectionString, ILogger logger) in D:\Code\LoyaltyAPI\LoyaltyAPI\Helpers\DatabaseConnectionHelper.cs:line 13
+   at LoyaltyAPI.Controllers.UserController.Login(LoginRequest request) in D:\Code\LoyaltyAPI\LoyaltyAPI\Controllers\UserController.cs:line 35
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at LoyaltyAPI.Security.ApiKeyMiddleware.InvokeAsync(HttpContext context) in D:\Code\LoyaltyAPI\LoyaltyAPI\Security\ApiKeyMiddleware.cs:line 42
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+
+HEADERS
+=======
+Content-Type: application/json; charset=utf-8
+Host: localhost:44343
+Transfer-Encoding: chunked
+X-API-KEY: MySuperSecretApiKey123
+traceparent: 00-075f7dc101b43e568c25155e975b4926-66241bb1673d88f6-00
+
+2026-01-12 23:16:18.218 +07:00 [INF] Login API response status: "OK"
+2026-01-12 23:16:18.219 +07:00 [INF] Login API response content: {"message":"Đăng nhập thành công","data":{"user_id":1134039809002831873,"username":"khachhang_b","user_role":"Customer","customer_id":1134039809066205185}}
+2026-01-12 23:16:18.240 +07:00 [INF] Login successful for user: khachhang_b
+2026-01-12 23:16:18.381 +07:00 [INF] GetCustomerRewardsWithPagination API response status: "OK"
+2026-01-12 23:16:18.382 +07:00 [INF] GetCustomerRewardsWithPagination API response content: {"message":"Lấy danh sách quà thành công","data":[{"reward_Id":"1136872304970760193","reward_Name":"Voucher FPT SHOP 50K","description":"Voucher sử dụng tại siêu thị","points_Cost":50,"stock_Quantity":118,"image_Url":"/Uploads/rewards/reward_1136872304970760193_20260108054009.png","updated_At":"2026-01-08T13:46:15.287365"}],"page":1,"pageSize":1,"totalCount":8,"totalPages":8,"hasNext":true,"hasPrevious":false}
+2026-01-12 23:16:18.389 +07:00 [INF] GetCustomerRewardsWithPagination successful, page: 1, total: 8
+2026-01-12 23:16:48.526 +07:00 [INF] Login API response status: "OK"
+2026-01-12 23:16:48.526 +07:00 [INF] Login API response content: {"message":"Đăng nhập thành công","data":{"user_id":1134039809002831873,"username":"khachhang_b","user_role":"Customer","customer_id":1134039809066205185}}
+2026-01-12 23:16:48.526 +07:00 [INF] Login successful for user: khachhang_b
+2026-01-12 23:16:48.585 +07:00 [INF] GetCustomerRewardsWithPagination API response status: "OK"
+2026-01-12 23:16:48.585 +07:00 [INF] GetCustomerRewardsWithPagination API response content: {"message":"Lấy danh sách quà thành công","data":[{"reward_Id":"1136872304970760193","reward_Name":"Voucher FPT SHOP 50K","description":"Voucher sử dụng tại siêu thị","points_Cost":50,"stock_Quantity":118,"image_Url":"/Uploads/rewards/reward_1136872304970760193_20260108054009.png","updated_At":"2026-01-08T13:46:15.287365"}],"page":1,"pageSize":1,"totalCount":8,"totalPages":8,"hasNext":true,"hasPrevious":false}
+2026-01-12 23:16:48.585 +07:00 [INF] GetCustomerRewardsWithPagination successful, page: 1, total: 8
+2026-01-12 23:16:54.745 +07:00 [INF] GetCustomerRewardsWithPagination API response status: "OK"
+2026-01-12 23:16:54.745 +07:00 [INF] GetCustomerRewardsWithPagination API response content: {"message":"Lấy danh sách quà thành công","data":[{"reward_Id":"1136606618552565761","reward_Name":"Voucher Co.opmart 100K","description":"Voucher sử dụng tại siêu thị","points_Cost":100,"stock_Quantity":998,"image_Url":"/Uploads/rewards/reward_1136606618552565761_20260108054107.jpg","updated_At":"2026-01-12T16:16:54.662709"}],"page":1,"pageSize":1,"totalCount":8,"totalPages":8,"hasNext":true,"hasPrevious":false}
+2026-01-12 23:16:54.745 +07:00 [INF] GetCustomerRewardsWithPagination successful, page: 1, total: 8
+2026-01-12 23:16:56.522 +07:00 [INF] GetRedemptionHistory API response status: "OK"
+2026-01-12 23:16:56.522 +07:00 [INF] GetRedemptionHistory API response content: {"message":"Lấy lịch sử đổi quà thành công","data":[{"transaction_Id":"1140864498749800449","reward_Id":"1136606618552565761","reward_Name":"Voucher Co.opmart 100K","description":"Voucher sử dụng tại siêu thị","quantity_Redeemed":1,"points_Spent":100,"redemption_Date":"2026-01-12T16:16:54.662709","transaction_Status":"Completed"},{"transaction_Id":"1140838819731439617","reward_Id":"1140838716870000641","reward_Name":"Voucher Winmart 100k","description":"Voucher điện tử dùng tại siêu thị","quantity_Redeemed":1,"points_Spent":100,"redemption_Date":"2026-01-12T14:06:18.065043","transaction_Status":"Completed"},{"transaction_Id":"1139698580934197249","reward_Id":"1137433323122720769","reward_Name":"Thẻ nạp điện thoại Vina 100K","description":"Thẻ nạp điện thoại","quantity_Redeemed":1,"points_Spent":100,"redemption_Date":"2026-01-08T13:26:44.811758","transaction_Status":"Completed"},{"transaction_Id":"1139698240762183681","reward_Id":"1136606618552565761","reward_Name":"Voucher Co.opmart 100K","description":"Voucher sử dụng tại siêu thị","quantity_Redeemed":1,"points_Spent":99,"redemption_Date":"2026-01-08T13:25:00.996652","transaction_Status":"Completed"},{"transaction_Id":"1139696892846964737","reward_Id":"1136872304970760193","reward_Name":"Voucher FPT SHOP 50K","description":"Voucher sử dụng tại siêu thị","quantity_Redeemed":1,"points_Spent":50,"redemption_Date":"2026-01-08T13:18:09.632435","transaction_Status":"Completed"},{"transaction_Id":"1138750919425884163","reward_Id":"1137158563853271041","reward_Name":"Thẻ nạp điện thoại Mobi 100K","description":"Thẻ nạp điện thoại","quantity_Redeemed":1,"points_Spent":100,"redemption_Date":"2026-01-05T05:06:41.454657","transaction_Status":"Completed"},{"transaction_Id":"1134039809204420609","reward_Id":"1134039809136132097","reward_Name":"Bình Giữ Nhiệt Cao Cấp","description":"Bình giữ nhiệt dung tích 500ml","quantity_Redeemed":1,"points_Spent":2500,"redemption_Date":"2025-12-19T20:44:44.738579","transaction_Status":"Completed"}],"page":1,"pageSize":100,"totalCount":7,"hasMore":false}
+2026-01-12 23:16:56.527 +07:00 [INF] GetRedemptionHistory successful for customer 1134039809066205185, page 1, pageSize 100, count 7

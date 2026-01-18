@@ -1,0 +1,9 @@
+2026-01-17 11:29:35.643 +07:00 [INF] Starting LoyaltyWebApp application
+2026-01-17 11:29:36.260 +07:00 [INF] LoyaltyWebApp is starting up
+2026-01-17 11:29:45.538 +07:00 [INF] Login API response status: "OK"
+2026-01-17 11:29:45.542 +07:00 [INF] Login API response content: {"message":"Đăng nhập thành công","data":{"user_id":1140836544969408513,"username":"admin_khoa","user_role":"Admin","customer_id":null}}
+2026-01-17 11:29:45.571 +07:00 [INF] Login successful for user: admin_khoa
+2026-01-17 11:29:45.975 +07:00 [INF] GetRewardsWithPagination API response status: "OK"
+2026-01-17 11:29:45.975 +07:00 [INF] GetRewardsWithPagination API response content: {"message":"Lấy danh sách quà thành công","data":[{"reward_Id":"1137433323122720769","reward_Name":"Thẻ nạp điện thoại Vina 100K","description":"Thẻ nạp điện thoại","points_Cost":100,"stock_Quantity":8,"image_Url":"/Uploads/rewards/reward_1137433323122720769_20251231132503.jpg","updated_At":"2026-01-13T05:37:23.975994"}],"page":1,"pageSize":1,"totalCount":10,"totalPages":10,"hasNext":true,"hasPrevious":false}
+2026-01-17 11:29:45.995 +07:00 [INF] GetRewardsWithPagination successful, page: 1, total: 10
+2026-01-17 19:46:23.427 +07:00 [INF] LoyaltyWebApp is shutting down

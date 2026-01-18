@@ -1,0 +1,53 @@
+@model LoyaltyWebApp.Models.RewardItem
+@{
+    ViewData["Title"] = "Thêm quà mới";
+}
+
+<div class="container mt-4">
+    <h2>Thêm quà mới</h2>
+
+    @if (ViewBag.ErrorMessage != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            @ViewBag.ErrorMessage
+        </div>
+    }
+
+    <form method="post" enctype="multipart/form-data" class="mt-4" asp-action="Create" asp-controller="Admin">
+        <div class="mb-3">
+            <label for="rewardName" class="form-label">Tên quà <span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="rewardName" name="Reward_Name" required>
+        </div>
+        <div class="mb-3">
+            <label for="description" class="form-label">Mô tả</label>
+            <textarea class="form-control" id="description" name="Description" rows="3"></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="pointsCost" class="form-label">Điểm đổi <span class="text-danger">*</span></label>
+            <input type="number" class="form-control" id="pointsCost" name="Points_Cost" required min="1">
+        </div>
+        <div class="mb-3">
+            <label for="stockQuantity" class="form-label">Số lượng tồn kho <span class="text-danger">*</span></label>
+            <input type="number" class="form-control" id="stockQuantity" name="Stock_Quantity" required min="0">
+        </div>
+        <div class="mb-3">
+            <label for="imageFile" class="form-label">Ảnh quà</label>
+            <input type="file" class="form-control" id="imageFile" name="imageFile" accept="image/*">
+            <small class="form-text text-muted">Chấp nhận: JPG, PNG, GIF, WEBP (tối đa 5MB)</small>
+        </div>
+        <div class="mb-3">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="isActive" name="Is_Active" value="true" checked>
+                <label class="form-check-label" for="isActive">
+                    Kích hoạt
+                </label>
+            </div>
+        </div>
+        
+        <div class="d-flex gap-2">
+            <button type="submit" class="btn btn-primary">Thêm quà</button>
+            <a asp-action="Index" asp-controller="Admin" class="btn btn-secondary">Hủy</a>
+        </div>
+    </form>
+</div>
+

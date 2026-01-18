@@ -23,12 +23,8 @@ try
     // Sử dụng Serilog thay vì logging mặc định
     builder.Host.UseSerilog();
 
-    builder.Services.AddRazorPages()
-        .AddRazorPagesOptions(options =>
-        {
-            options.Conventions.AddPageRoute("/Admin/Create", "/Create");
-        });
-    builder.Services.AddControllers();
+    builder.Services.AddControllersWithViews();
+    builder.Services.AddRazorPages(); // Restore for legacy pages
     
     // Cấu hình HttpClient để bypass SSL validation (cho development/testing)
     // CẢNH BÁO: Chỉ sử dụng cho development, không dùng cho production!
@@ -85,8 +81,13 @@ builder.Services.AddScoped<LoyaltyWebApp.Services.ICustomerService, LoyaltyWebAp
     app.UseStaticFiles();
     app.UseRouting();
     app.UseSession();
-    app.MapRazorPages();
-    app.MapControllers();
+    
+    app.MapControllerRoute(
+        name: "default",
+        pattern: "{controller=Home}/{action=Index}/{id?}");
+        
+    app.MapControllers(); 
+    app.MapRazorPages(); // Restore mapping
 
     Log.Information("LoyaltyWebApp is starting up");
     app.Run();

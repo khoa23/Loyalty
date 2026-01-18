@@ -1,0 +1,139 @@
+@model LoyaltyWebApp.Models.CustomerDashboardViewModel
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+@{
+    ViewData["Title"] = "Danh sách quà";
+}
+
+<div class="container-fluid mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Danh sách quà</h2>
+        <div>
+            <span class="badge bg-primary fs-6">Điểm hiện có: <strong>@Model.CurrentPoints</strong></span>
+        </div>
+        <span id="currentPoints" style="display:none">@Model.CurrentPoints</span>
+        <span id="apiBaseUrl" style="display:none">@(Configuration.GetValue<string>("ApiBaseUrl") ?? "https://localhost:44343/")</span>
+        <span id="apiKey" style="display:none">@(Configuration.GetValue<string>("ApiKey") ?? "")</span>
+    </div>
+
+    @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+    {
+        <div class="alert alert-danger" role="alert">
+            @Model.ErrorMessage
+        </div>
+    }
+
+    @if (!string.IsNullOrEmpty(Model.SuccessMessage))
+    {
+        <div class="alert alert-success" role="alert">
+            @Model.SuccessMessage
+        </div>
+    }
+
+    <div id="rewardsContainer">
+        <div class="text-center mt-5">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal đổi quà -->
+<div class="modal fade" id="redeemModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Đổi quà</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form method="post" id="redeemForm">
+                <div class="modal-body">
+                    <input type="hidden" name="rewardId" id="modalRewardId" />
+                    <p><strong>Tên quà:</strong> <span id="modalRewardName"></span></p>
+                    <p><strong>Điểm cần:</strong> <span id="modalPointsCost"></span> điểm</p>
+                    <p><strong>Điểm hiện có:</strong> <span id="modalCurrentPoints"></span> điểm</p>
+                    <div class="mb-3">
+                        <label for="quantity" class="form-label">Số lượng</label>
+                        <input type="number" class="form-control" id="quantity" name="quantity" value="1" min="1" required>
+                        <small class="form-text text-muted">Tổng điểm cần: <span id="totalPoints">0</span></small>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                    <button type="submit" class="btn btn-primary">Xác nhận đổi</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        const currentPoints = parseInt(document.getElementById('currentPoints').textContent);
+        const apiBaseUrl = document.getElementById('apiBaseUrl').textContent;
+        const apiKey = document.getElementById('apiKey').textContent;
+
+        function showRedeemModal(rewardId, rewardName, pointsCost, stockQuantity, currentPoints) {
+            document.getElementById('modalRewardId').value = rewardId;
+            document.getElementById('modalRewardName').textContent = rewardName;
+            document.getElementById('modalPointsCost').textContent = pointsCost;
+            document.getElementById('modalCurrentPoints').textContent = currentPoints;
+            
+            const quantityInput = document.getElementById('quantity');
+            quantityInput.max = stockQuantity;
+            quantityInput.value = 1;
+            updateTotalPoints();
+            
+            const modal = new bootstrap.Modal(document.getElementById('redeemModal'));
+            modal.show();
+        }
+
+        function updateTotalPoints() {
+            const quantity = parseInt(document.getElementById('quantity').value) || 1;
+            const pointsCost = parseInt(document.getElementById('modalPointsCost').textContent) || 0;
+            const total = quantity * pointsCost;
+            document.getElementById('totalPoints').textContent = total;
+        }
+
+        document.getElementById('quantity').addEventListener('input', updateTotalPoints);
+
+        // Get base path from current URL to support subdirectories (e.g., /loyaltyWebApp/)
+        function getBasePath() {
+            const url = new URL(window.location.href);
+            const pathname = url.pathname;
+            
+            // If path contains /Customer, extract base path up to that point
+            const customerIndex = pathname.indexOf('/Customer');
+            if (customerIndex > 0) {
+                return pathname.substring(0, customerIndex);
+            }
+            return '';
+        }
+
+        const basePath = getBasePath();
+
+        function loadPage(page) {
+            const apiUrl = basePath + '/Reward/GetRewards?page=' + page;
+            fetch(apiUrl)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Lỗi tải dữ liệu (' + response.status + ')');
+                    }
+                    return response.text();
+                })
+                .then(html => {
+                    document.getElementById('rewardsContainer').innerHTML = html;
+                })
+                .catch(error => {
+                    console.error('Error loading page:', error);
+                    document.getElementById('rewardsContainer').innerHTML = '<div class="alert alert-danger text-center">Không thể tải danh sách quà.<br>' + error.message + '</div>';
+                });
+        }
+
+        // Load trang đầu tiên khi vào trang
+        document.addEventListener('DOMContentLoaded', function() {
+            loadPage(1);
+        });
+    </script>
+}

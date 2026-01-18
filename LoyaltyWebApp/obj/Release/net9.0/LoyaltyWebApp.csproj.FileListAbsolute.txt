@@ -192,7 +192,7 @@ D:\Code\LoyaltyAPI\LoyaltyWebApp\obj\Release\net9.0\LoyaltyWebApp.sourcelink.jso
 D:\Code\LoyaltyAPI\LoyaltyWebApp\obj\Release\net9.0\rjimswa.dswa.cache.json
 D:\Code\LoyaltyAPI\LoyaltyWebApp\obj\Release\net9.0\rjsmrazor.dswa.cache.json
 D:\Code\LoyaltyAPI\LoyaltyWebApp\obj\Release\net9.0\rjsmcshtml.dswa.cache.json
-D:\Code\LoyaltyAPI\LoyaltyWebApp\obj\Release\net9.0\scopedcss\Pages\Shared\_Layout.cshtml.rz.scp.css
+D:\Code\LoyaltyAPI\LoyaltyWebApp\obj\Release\net9.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
 D:\Code\LoyaltyAPI\LoyaltyWebApp\obj\Release\net9.0\scopedcss\bundle\LoyaltyWebApp.styles.css
 D:\Code\LoyaltyAPI\LoyaltyWebApp\obj\Release\net9.0\scopedcss\projectbundle\LoyaltyWebApp.bundle.scp.css
 D:\Code\LoyaltyAPI\LoyaltyWebApp\obj\Release\net9.0\compressed\ehqf0icgsc-b9sayid5wm.gz
@@ -257,8 +257,8 @@ D:\Code\LoyaltyAPI\LoyaltyWebApp\obj\Release\net9.0\compressed\1hz9osrpjl-2z0ns9
 D:\Code\LoyaltyAPI\LoyaltyWebApp\obj\Release\net9.0\compressed\jess1b7cwf-muycvpuwrr.gz
 D:\Code\LoyaltyAPI\LoyaltyWebApp\obj\Release\net9.0\compressed\1whv09rbmw-87fc7y1x7t.gz
 D:\Code\LoyaltyAPI\LoyaltyWebApp\obj\Release\net9.0\compressed\k9y07wgjjl-mlv21k5csn.gz
-D:\Code\LoyaltyAPI\LoyaltyWebApp\obj\Release\net9.0\compressed\ikdn7dfria-aw042bewij.gz
-D:\Code\LoyaltyAPI\LoyaltyWebApp\obj\Release\net9.0\compressed\9a9phd3943-aw042bewij.gz
+D:\Code\LoyaltyAPI\LoyaltyWebApp\obj\Release\net9.0\compressed\ikdn7dfria-05fhpqh8a6.gz
+D:\Code\LoyaltyAPI\LoyaltyWebApp\obj\Release\net9.0\compressed\9a9phd3943-05fhpqh8a6.gz
 D:\Code\LoyaltyAPI\LoyaltyWebApp\obj\Release\net9.0\staticwebassets.build.json
 D:\Code\LoyaltyAPI\LoyaltyWebApp\obj\Release\net9.0\staticwebassets.build.json.cache
 D:\Code\LoyaltyAPI\LoyaltyWebApp\obj\Release\net9.0\staticwebassets.development.json

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LoyaltyWebApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+da02c65c604e4b15bf325a04eee419efc1ca80ab")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7538f2ed5bda15cab4e960740614165197c1882b")]
 [assembly: System.Reflection.AssemblyProductAttribute("LoyaltyWebApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LoyaltyWebApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
